@@ -16,8 +16,18 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;max-width:480px;margin:0 auto;}
 
+/* LOADING */
+#loading{position:fixed;inset:0;background:var(--red-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;transition:opacity .4s;}
+#loading.hide{opacity:0;pointer-events:none;}
+.loading-hanzi{font-family:'Cormorant Garamond',serif;font-size:40px;color:var(--gold-lit);letter-spacing:8px;margin-bottom:16px;animation:glow 2s infinite;}
+.loading-dots{display:flex;gap:8px;}
+.loading-dot{width:8px;height:8px;background:var(--gold-lit);border-radius:50%;animation:ldot 1.2s infinite;}
+.loading-dot:nth-child(2){animation-delay:.2s;}
+.loading-dot:nth-child(3){animation-delay:.4s;}
+@keyframes ldot{0%,80%,100%{opacity:.2;transform:scale(.8);}40%{opacity:1;transform:scale(1.2);}}
+
 /* SCAN OVERLAY */
-#scanOverlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;flex-direction:column;padding:32px;text-align:center;}
+#scanOverlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.9);align-items:center;justify-content:center;flex-direction:column;padding:32px;text-align:center;}
 #scanOverlay.show{display:flex;}
 .scan-icon{font-size:80px;margin-bottom:16px;animation:scanPop .4s cubic-bezier(.175,.885,.32,1.275);}
 @keyframes scanPop{0%{transform:scale(0);opacity:0;}100%{transform:scale(1);opacity:1;}}
@@ -30,7 +40,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .scan-already{font-size:12px;color:rgba(255,255,255,0.4);margin-top:12px;}
 
 /* COVER */
-#cover{min-height:100vh;background:linear-gradient(155deg,var(--red-dark) 0%,var(--red-deep) 55%,#8B1A1A 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;position:relative;overflow:hidden;}
+#cover{display:none;min-height:100vh;background:linear-gradient(155deg,var(--red-dark) 0%,var(--red-deep) 55%,#8B1A1A 100%);flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;position:relative;overflow:hidden;}
+#cover.show{display:flex;}
 #cover::before{content:'亚洲探索护照';font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:700;color:rgba(255,255,255,0.025);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
 .cover-ring{position:absolute;border-radius:50%;border:1px solid rgba(234,179,8,0.1);pointer-events:none;}
 .cover-badge{display:inline-block;border:1px solid rgba(234,179,8,0.3);background:rgba(234,179,8,0.08);color:var(--gold-lit);padding:5px 16px;font-size:9px;letter-spacing:.38em;text-transform:uppercase;margin-bottom:20px;}
@@ -43,25 +54,29 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .cover-info-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:13px;color:rgba(255,255,255,0.8);}
 .cover-info-row:last-child{border-bottom:none;}
 .cover-info-row span:first-child{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-lit);width:70px;flex-shrink:0;}
-.name-wrap{width:100%;margin-bottom:16px;}
-.name-wrap label{display:block;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lit);margin-bottom:8px;}
-.name-input{width:100%;padding:14px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(234,179,8,0.3);color:#fff;font-family:'DM Sans',sans-serif;font-size:16px;outline:none;text-align:center;transition:border-color .2s;}
-.name-input::placeholder{color:rgba(255,255,255,0.3);}
-.name-input:focus{border-color:var(--gold-lit);}
-.start-btn{width:100%;padding:16px;background:var(--gold);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:10px;transition:background .2s;}
+.form-group{width:100%;margin-bottom:14px;}
+.form-group label{display:block;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lit);margin-bottom:8px;}
+.form-input{width:100%;padding:14px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(234,179,8,0.3);color:#fff;font-family:'DM Sans',sans-serif;font-size:16px;outline:none;text-align:center;transition:border-color .2s;}
+.form-input::placeholder{color:rgba(255,255,255,0.3);}
+.form-input:focus{border-color:var(--gold-lit);}
+.start-btn{width:100%;padding:16px;background:var(--gold);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:10px;transition:background .2s,opacity .2s;}
 .start-btn:hover{background:var(--gold-lit);}
 .start-btn:disabled{opacity:.5;cursor:not-allowed;}
-.cover-hint{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.5;}
+.cover-hint{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.5;margin-bottom:10px;}
+.recover-btn{font-size:11px;color:rgba(253,230,138,0.6);background:none;border:none;cursor:pointer;text-decoration:underline;padding:4px;}
+.cover-error{font-size:12px;color:#fca5a5;margin-top:8px;min-height:18px;}
 
 /* PASSPORT */
 #passport{display:none;}
+#passport.show{display:block;}
 .pheader{background:linear-gradient(135deg,var(--red-dark),var(--red-deep));padding:20px 20px 14px;position:sticky;top:0;z-index:100;}
 .pheader-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 .pholder{font-size:11px;color:rgba(255,255,255,0.6);}
 .pholder strong{display:block;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#fff;}
+.pholder small{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:.05em;}
 .plogo{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;color:var(--gold-lit);text-align:right;line-height:1.3;}
 .pbar-wrap{background:rgba(255,255,255,0.1);height:6px;border-radius:3px;overflow:hidden;}
-.pbar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-lit));border-radius:3px;transition:width .5s;width:0%;}
+.pbar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-lit));border-radius:3px;transition:width .5s;}
 .pbar-text{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,0.55);margin-top:5px;}
 
 .swrap{padding:20px 16px 100px;}
@@ -70,7 +85,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .qr-hint{background:var(--gold-pale);border:1px solid rgba(217,119,6,0.25);border-left:3px solid var(--gold);padding:10px 14px;margin-bottom:20px;font-size:12px;color:#92400e;line-height:1.5;}
 .qr-hint strong{display:block;margin-bottom:2px;}
 .sec-hdr{font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid rgba(185,28,28,0.15);}
-
 .scard{background:#fff;border:1px solid var(--border);border-left:4px solid var(--border);margin-bottom:10px;padding:16px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;transition:all .2s;}
 .scard.stamped{border-left-color:var(--green);background:#f0fdf4;}
 .semoji{font-size:26px;flex-shrink:0;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--cream);border-radius:50%;transition:background .2s;}
@@ -84,10 +98,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .sstamp{flex-shrink:0;width:44px;height:44px;border-radius:50%;border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .3s;color:transparent;}
 .scard.stamped .sstamp{border:2px solid var(--green);background:#dcfce7;color:var(--green);font-size:22px;animation:stampIn .3s cubic-bezier(.175,.885,.32,1.275);}
 @keyframes stampIn{0%{transform:scale(0) rotate(-20deg);opacity:0;}100%{transform:scale(1) rotate(0deg);opacity:1;}}
+.sync-status{font-size:10px;text-align:center;padding:6px;color:var(--muted);}
+.sync-status.syncing{color:var(--gold);}
+.sync-status.saved{color:var(--green);}
 
 /* COMPLETE */
-#complete{display:none;padding:32px 20px;text-align:center;min-height:100vh;}
-#complete.show{display:flex;flex-direction:column;align-items:center;justify-content:center;}
+#complete{display:none;}
+#complete.show{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;min-height:100vh;text-align:center;}
 .cicon{font-size:72px;margin-bottom:16px;animation:bounce .6s ease-in-out;}
 @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
 .ctitle{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--red);line-height:1.1;margin-bottom:10px;}
@@ -104,11 +121,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .prize{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(217,119,6,0.15);font-size:13px;color:var(--ink);}
 .prize:last-child{border-bottom:none;}
 .prize::before{content:'🎁';font-size:14px;}
-.claim-btn{width:100%;padding:16px;background:var(--red);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:10px;transition:background .2s;}
+.claim-btn{width:100%;padding:16px;background:var(--red);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:10px;}
 .claim-btn:hover{background:var(--red-deep);}
 .restart-btn{font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;padding:8px;}
 
-/* ADMIN/QR PAGE */
+/* ADMIN */
 #adminPage{display:none;padding:20px;}
 .ahdr{background:var(--red-dark);padding:20px;margin:-20px -20px 20px;text-align:center;}
 .ahdr h1{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--gold-lit);}
@@ -132,17 +149,26 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .tdot{width:8px;height:8px;background:var(--gold-lit);border-radius:50%;animation:pulse 1.5s infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
 
-/* Confetti */
 .cp{position:fixed;width:8px;height:8px;border-radius:2px;animation:cfall 1.5s ease-in forwards;pointer-events:none;z-index:999;}
 @keyframes cfall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
 
 @media print{
   #adminPage{display:block !important;}
-  #cover,#passport,#complete,#scanOverlay,.print-btn,.aurl-wrap,.aintro{display:none !important;}
+  #cover,#passport,#complete,#scanOverlay,#loading,.print-btn,.aurl-wrap,.aintro{display:none !important;}
 }
 </style>
 </head>
 <body>
+
+<!-- LOADING -->
+<div id="loading">
+  <div class="loading-hanzi">亚洲</div>
+  <div class="loading-dots">
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+  </div>
+</div>
 
 <!-- SCAN OVERLAY -->
 <div id="scanOverlay">
@@ -169,28 +195,43 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
     <div class="cover-info-row"><span>Venue</span>The Yard at Bayshore Shopping Center</div>
     <div class="cover-info-row"><span>How to</span>Scan QR codes at each station</div>
   </div>
-  <div class="name-wrap">
+  <div class="form-group">
     <label>Your Name</label>
-    <input class="name-input" id="nameInput" type="text" placeholder="Enter your name to begin" maxlength="40" autocomplete="off">
+    <input class="form-input" id="nameInput" type="text" placeholder="Enter your full name" maxlength="50" autocomplete="name">
   </div>
-  <button class="start-btn" id="startBtn" onclick="startPassport()" disabled>Open My Passport →</button>
-  <p class="cover-hint">Scan a station QR code at any time to auto-stamp your passport</p>
+  <div class="form-group">
+    <label>Phone Number</label>
+    <input class="form-input" id="phoneInput" type="tel" placeholder="(414) 000-0000" maxlength="20" autocomplete="tel">
+  </div>
+  <div class="cover-error" id="coverError"></div>
+  <button class="start-btn" id="startBtn" onclick="startPassport()">Open My Passport →</button>
+  <p class="cover-hint">Your phone number is your passport ID — use it to restore stamps on any device</p>
+  <button class="recover-btn" onclick="showRecover()">Already have a passport? Recover it →</button>
 </div>
 
 <!-- PASSPORT -->
 <div id="passport">
   <div class="pheader">
     <div class="pheader-top">
-      <div class="pholder">Passport Holder<strong id="holderName">—</strong></div>
+      <div class="pholder">
+        Passport Holder
+        <strong id="holderName">—</strong>
+        <small id="holderPhone"></small>
+      </div>
       <div class="plogo">Gateway<br>to Asia</div>
     </div>
     <div class="pbar-wrap"><div class="pbar" id="pbar"></div></div>
-    <div class="pbar-text"><span id="pbarLabel">0 of 10 stations visited</span><span id="pbarPct">0%</span></div>
+    <div class="pbar-text">
+      <span id="pbarLabel">0 of 10 stations visited</span>
+      <span id="pbarPct">0%</span>
+    </div>
   </div>
+  <div class="sync-status" id="syncStatus">☁️ Synced with cloud</div>
+
   <div class="swrap">
     <div class="swrap-title">Your Discovery Passport</div>
-    <p class="swrap-sub">Scan the QR code at each station to collect your stamp.</p>
-    <div class="qr-hint"><strong>📱 How it works</strong>Point your camera at the QR code sign at each station. Your stamp is collected automatically!</div>
+    <p class="swrap-sub">Scan the QR code at each station to collect your stamp automatically.</p>
+    <div class="qr-hint"><strong>📱 How it works</strong>Point your camera at the QR code sign at each cultural station. Your stamp saves instantly to the cloud!</div>
 
     <div class="sec-hdr">Cultural Activities</div>
     <div class="scard" id="s0"><div class="semoji">🖌️</div><div class="sinfo"><div class="sculture">China</div><div class="sname">Chinese Calligraphy</div><div class="sdesc">Write your name in beautiful Chinese brushstroke characters</div><div class="sqr-label">Scan QR · Station 1</div></div><div class="sstamp">✓</div></div>
@@ -228,26 +269,42 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
     <div class="prize">Festival wristband</div>
   </div>
   <button class="claim-btn" onclick="claimPrize()">🎁 Show This Screen to Claim Your Prize</button>
-  <button class="restart-btn" onclick="restartPassport()">Start over</button>
+  <button class="restart-btn" onclick="restartPassport()">Start over / New passport</button>
 </div>
 
-<!-- ADMIN/QR PAGE -->
+<!-- ADMIN -->
 <div id="adminPage">
-  <div class="ahdr"><h1>Station QR Codes</h1><p>Asia Discovery Passport · Gateway to Asia 2026 · Print &amp; place at each station</p></div>
-  <div class="aintro"><strong>📋 Instructions for Staff</strong>Print this page, cut out each QR code card, and place one at each cultural station. When attendees scan with their phone camera, their passport is automatically stamped. Update the URL below before printing.</div>
+  <div class="ahdr"><h1>Station QR Codes</h1><p>Asia Discovery Passport · Gateway to Asia 2026</p></div>
+  <div class="aintro"><strong>📋 Print & Place Instructions</strong>Print this page and cut out each QR code card. Place one at each cultural station. When attendees scan, their passport stamps automatically and saves to Firestore.</div>
   <div class="aurl-wrap">
     <label>Passport Page URL</label>
     <input class="aurl-input" id="baseUrl" value="https://wcccbusinessnetwork.org/e-passport.html" oninput="buildQRs()">
-    <div class="aurl-hint">Change this to your actual deployed URL before printing</div>
+    <div class="aurl-hint">Update to your actual deployed URL before printing</div>
   </div>
   <button class="print-btn" onclick="window.print()">🖨️ Print All QR Codes</button>
   <div class="qr-grid" id="qrGrid"></div>
 </div>
 
-<div class="toast" id="toast"><div class="tdot"></div><span id="toastMsg">Stamped!</span></div>
+<div class="toast" id="toast"><div class="tdot"></div><span id="toastMsg">Saved!</span></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script>
+<!-- Firebase SDKs -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAcK6IQx8XLy-mi8sSPrvdQKm7VdWGF8gA",
+  authDomain: "wisconsin-asian-hub.firebaseapp.com",
+  projectId: "wisconsin-asian-hub",
+  storageBucket: "wisconsin-asian-hub.firebasestorage.app",
+  messagingSenderId: "255172098793",
+  appId: "1:255172098793:web:badc26c64eeba4a4be8e78",
+  measurementId: "G-FVS3229N32"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
 const TOTAL = 10;
 const STATIONS = [
   {id:'calligraphy', emoji:'🖌️', culture:'China',        name:'Chinese Calligraphy',     index:0},
@@ -262,42 +319,140 @@ const STATIONS = [
   {id:'costume',     emoji:'🎎', culture:'All Cultures', name:'Photo & Costume Station', index:9},
 ];
 
-let stamped = new Set();
+let stamped    = new Set();
 let holderName = '';
+let holderPhone= '';
+let passportId = '';  // cleaned phone number used as Firestore doc ID
 
-function loadState() {
+// ── UTILS ──
+function cleanPhone(p) { return p.replace(/\D/g,''); }
+function formatPhone(p) {
+  const d = cleanPhone(p);
+  if (d.length === 10) return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
+  return p;
+}
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 2200);
+}
+function setSyncStatus(status, msg) {
+  const el = document.getElementById('syncStatus');
+  el.className = 'sync-status ' + status;
+  el.textContent = msg;
+}
+function hideLoading() {
+  const el = document.getElementById('loading');
+  el.classList.add('hide');
+  setTimeout(() => el.style.display = 'none', 400);
+}
+
+// ── FIRESTORE ──
+async function loadPassport(phone) {
   try {
-    const d = JSON.parse(localStorage.getItem('gta_v3') || 'null');
-    if (d && d.name) { holderName = d.name; stamped = new Set(d.stamped || []); return true; }
-  } catch(e) {}
+    const ref  = doc(db, 'gta_passports', phone);
+    const snap = await getDoc(ref);
+    if (snap.exists()) {
+      const data = snap.data();
+      holderName  = data.name  || '';
+      holderPhone = data.phone || phone;
+      stamped     = new Set(data.stamps || []);
+      return true;
+    }
+  } catch(e) { console.error('Load error:', e); }
   return false;
 }
-function saveState() {
-  try { localStorage.setItem('gta_v3', JSON.stringify({name:holderName, stamped:[...stamped]})); } catch(e) {}
+
+async function createPassport(name, phone) {
+  try {
+    await setDoc(doc(db, 'gta_passports', phone), {
+      name, phone,
+      stamps: [],
+      startedAt: serverTimestamp(),
+      completedAt: null,
+      event: 'Gateway to Asia 2026'
+    });
+    return true;
+  } catch(e) { console.error('Create error:', e); return false; }
 }
 
-document.getElementById('nameInput').addEventListener('input', function() {
-  document.getElementById('startBtn').disabled = this.value.trim().length < 2;
-});
-document.getElementById('nameInput').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter' && this.value.trim().length >= 2) startPassport();
-});
+async function addStamp(stationId) {
+  try {
+    setSyncStatus('syncing', '☁️ Syncing...');
+    const ref = doc(db, 'gta_passports', passportId);
+    const updates = { stamps: arrayUnion(stationId) };
+    if (stamped.size === TOTAL) updates.completedAt = serverTimestamp();
+    await updateDoc(ref, updates);
+    setSyncStatus('saved', '✅ Saved to cloud');
+  } catch(e) {
+    console.error('Stamp error:', e);
+    setSyncStatus('', '⚠️ Offline — stamp saved locally');
+  }
+}
 
-function startPassport() {
-  const n = document.getElementById('nameInput').value.trim();
-  if (!n) return;
-  holderName = n; saveState();
+// ── COVER ──
+function showCover() {
+  document.getElementById('cover').classList.add('show');
+  hideLoading();
+}
+
+window.startPassport = async function() {
+  const name  = document.getElementById('nameInput').value.trim();
+  const phone = cleanPhone(document.getElementById('phoneInput').value);
+  const errEl = document.getElementById('coverError');
+  errEl.textContent = '';
+
+  if (!name)           { errEl.textContent = 'Please enter your name.'; return; }
+  if (phone.length < 10) { errEl.textContent = 'Please enter a valid 10-digit phone number.'; return; }
+
+  const btn = document.getElementById('startBtn');
+  btn.disabled = true;
+  btn.textContent = 'Opening passport...';
+
+  passportId  = phone;
+  holderName  = name;
+  holderPhone = formatPhone(phone);
+
+  // Check if passport already exists
+  const exists = await loadPassport(phone);
+  if (!exists) {
+    // Create new passport
+    const ok = await createPassport(name, phone);
+    if (!ok) { errEl.textContent = 'Could not create passport. Check your connection.'; btn.disabled = false; btn.textContent = 'Open My Passport →'; return; }
+  }
+
+  // Save to localStorage as backup
+  localStorage.setItem('gta_phone', phone);
   showPassport();
-  const pending = sessionStorage.getItem('gta_pending');
-  if (pending) { sessionStorage.removeItem('gta_pending'); setTimeout(() => doStamp(pending), 400); }
-}
+};
 
+window.showRecover = function() {
+  document.getElementById('nameInput').value = '';
+  document.getElementById('phoneInput').placeholder = 'Enter your phone number to recover';
+  document.getElementById('nameInput').placeholder = 'Enter your name';
+  document.getElementById('startBtn').textContent = 'Recover My Passport →';
+  document.getElementById('phoneInput').focus();
+};
+
+// ── PASSPORT ──
 function showPassport() {
-  document.getElementById('cover').style.display = 'none';
-  document.getElementById('passport').style.display = 'block';
-  document.getElementById('holderName').textContent = holderName;
-  stamped.forEach(i => { const c = document.getElementById('s'+i); if(c) c.classList.add('stamped'); });
+  document.getElementById('cover').classList.remove('show');
+  document.getElementById('passport').classList.add('show');
+  document.getElementById('holderName').textContent  = holderName;
+  document.getElementById('holderPhone').textContent = holderPhone;
+  stamped.forEach(id => {
+    const s = STATIONS.find(x => x.id === id);
+    if (s) { const c = document.getElementById('s'+s.index); if(c) c.classList.add('stamped'); }
+  });
   updateProgress();
+  hideLoading();
+  setSyncStatus('saved', '✅ Synced with cloud');
+
+  // Check pending stamp from QR scan
+  const pending = sessionStorage.getItem('gta_pending');
+  if (pending) { sessionStorage.removeItem('gta_pending'); setTimeout(() => doStamp(pending), 500); }
 }
 
 function updateProgress() {
@@ -307,18 +462,22 @@ function updateProgress() {
   document.getElementById('pbarPct').textContent = pct + '%';
 }
 
-function doStamp(stationId) {
+// ── STAMPING ──
+window.doStamp = async function(stationId) {
   const s = STATIONS.find(x => x.id === stationId);
   if (!s) return;
-  const already = stamped.has(s.index);
+  const already = stamped.has(s.id);
+
   if (!already) {
-    stamped.add(s.index);
+    stamped.add(s.id);
     const card = document.getElementById('s' + s.index);
     if (card) card.classList.add('stamped');
-    saveState(); updateProgress();
+    updateProgress();
+    await addStamp(s.id);
   }
+
   // Show overlay
-  document.getElementById('scanIcon').textContent = s.emoji;
+  document.getElementById('scanIcon').textContent    = s.emoji;
   document.getElementById('scanCulture').textContent = s.culture;
   document.getElementById('scanStation').textContent = s.name;
   document.getElementById('scanProgress').textContent = already
@@ -326,16 +485,18 @@ function doStamp(stationId) {
     : stamped.size + ' of ' + TOTAL + ' stamped · ' + (TOTAL - stamped.size) + ' to go';
   document.getElementById('scanAlready').textContent = already ? 'Already stamped — keep exploring!' : '';
   document.getElementById('scanOverlay').classList.add('show');
-}
+};
 
-function closeScan() {
+window.closeScan = function() {
   document.getElementById('scanOverlay').classList.remove('show');
   if (stamped.size === TOTAL) setTimeout(showComplete, 400);
-}
+};
 
+// ── COMPLETE ──
 function showComplete() {
-  document.getElementById('passport').style.display = 'none';
-  document.getElementById('complete').style.display = 'flex';
+  document.getElementById('passport').classList.remove('show');
+  const comp = document.getElementById('complete');
+  comp.classList.add('show');
   document.getElementById('completeName').textContent = holderName;
   const dots = document.getElementById('completeDots');
   dots.innerHTML = '';
@@ -347,24 +508,33 @@ function showComplete() {
   confetti();
 }
 
-function claimPrize() { alert('🎁 Show this screen at the Information Booth!\n\nThank you for exploring Gateway to Asia, ' + holderName + '! 🎉'); }
+window.claimPrize = function() {
+  alert('🎁 Show this screen at the Information Booth!\n\nCongratulations ' + holderName + '! You explored all of Gateway to Asia! 🎉');
+};
 
-function restartPassport() {
-  if (!confirm('Start over? Stamps will be cleared.')) return;
-  stamped.clear(); holderName = '';
-  localStorage.removeItem('gta_v3');
-  ['complete','passport'].forEach(id => document.getElementById(id).style.display = 'none');
-  document.getElementById('cover').style.display = 'flex';
+window.restartPassport = function() {
+  if (!confirm('Start a new passport? This will clear your current stamps.')) return;
+  stamped.clear(); holderName = ''; holderPhone = ''; passportId = '';
+  localStorage.removeItem('gta_phone');
+  document.getElementById('complete').classList.remove('show');
+  document.getElementById('passport').classList.remove('show');
   document.getElementById('nameInput').value = '';
-  document.getElementById('startBtn').disabled = true;
-}
+  document.getElementById('phoneInput').value = '';
+  document.getElementById('coverError').textContent = '';
+  document.getElementById('startBtn').textContent = 'Open My Passport →';
+  document.getElementById('startBtn').disabled = false;
+  document.getElementById('cover').classList.add('show');
+  // Reset stamp UI
+  for (let i=0;i<TOTAL;i++) { const c=document.getElementById('s'+i); if(c) c.classList.remove('stamped'); }
+  updateProgress();
+};
 
-// QR CODE GENERATION
-function buildQRs() {
+// ── QR CODES ──
+window.buildQRs = function() {
   const base = document.getElementById('baseUrl').value.trim();
   const grid = document.getElementById('qrGrid');
   grid.innerHTML = '';
-  STATIONS.forEach((s, i) => {
+  STATIONS.forEach((s,i) => {
     const url = base + '?stamp=' + s.id;
     const item = document.createElement('div');
     item.className = 'qr-item';
@@ -374,47 +544,72 @@ function buildQRs() {
       new QRCode(document.getElementById('qrc'+i), {text:url, width:130, height:130, colorDark:'#1C0A00', colorLight:'#FFFBF2', correctLevel:QRCode.CorrectLevel.M});
     } catch(e) {}
   });
-}
+};
 
+// ── CONFETTI ──
 function confetti() {
-  const colors = ['#B91C1C','#D97706','#F59E0B','#FFFBF2','#7F1D1D','#FDE68A'];
-  for (let i=0;i<60;i++) setTimeout(() => {
-    const el = document.createElement('div');
-    el.className = 'cp';
-    el.style.cssText = `left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${1+Math.random()}s;animation-delay:${Math.random()*.5}s`;
+  const colors=['#B91C1C','#D97706','#F59E0B','#FFFBF2','#7F1D1D','#FDE68A'];
+  for(let i=0;i<60;i++) setTimeout(()=>{
+    const el=document.createElement('div');
+    el.className='cp';
+    el.style.cssText=`left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${1+Math.random()}s;animation-delay:${Math.random()*.5}s`;
     document.body.appendChild(el);
-    setTimeout(() => el.remove(), 2500);
-  }, i*30);
+    setTimeout(()=>el.remove(),2500);
+  },i*30);
 }
 
-window.addEventListener('load', () => {
-  const params = new URLSearchParams(location.search);
-  const stampId = params.get('stamp');
-  const admin   = params.get('admin');
+// ── INIT ──
+const params    = new URLSearchParams(location.search);
+const stampId   = params.get('stamp');
+const adminMode = params.get('admin');
 
-  if (admin === 'qr') {
-    document.getElementById('cover').style.display = 'none';
-    document.getElementById('adminPage').style.display = 'block';
-    setTimeout(buildQRs, 600);
-    return;
-  }
-
-  const hasSaved = loadState();
+if (adminMode === 'qr') {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('adminPage').style.display = 'block';
+  // Load QRCode library then build
+  const s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  s.onload = () => setTimeout(buildQRs, 300);
+  document.head.appendChild(s);
+} else {
+  // Check for saved phone
+  const savedPhone = localStorage.getItem('gta_phone');
 
   if (stampId) {
-    if (!hasSaved || !holderName) {
-      sessionStorage.setItem('gta_pending', stampId);
-      const hint = document.querySelector('.cover-hint');
-      const s = STATIONS.find(x => x.id === stampId);
-      if (hint && s) hint.textContent = '📍 Enter your name to stamp: ' + s.name;
+    if (savedPhone) {
+      // Load existing passport then stamp
+      passportId = savedPhone;
+      loadPassport(savedPhone).then(found => {
+        if (found) {
+          showPassport();
+          setTimeout(() => doStamp(stampId), 500);
+        } else {
+          sessionStorage.setItem('gta_pending', stampId);
+          showCover();
+        }
+      });
     } else {
-      showPassport();
-      setTimeout(() => doStamp(stampId), 400);
+      sessionStorage.setItem('gta_pending', stampId);
+      const s = STATIONS.find(x => x.id === stampId);
+      const hint = document.querySelector('.cover-hint');
+      if (hint && s) hint.textContent = '📍 Enter your details to stamp: ' + s.name;
+      showCover();
     }
-  } else if (hasSaved && holderName) {
-    stamped.size === TOTAL ? showComplete() : showPassport();
+  } else if (savedPhone) {
+    passportId = savedPhone;
+    loadPassport(savedPhone).then(found => {
+      if (found) {
+        if (stamped.size === TOTAL) showComplete();
+        else showPassport();
+      } else {
+        showCover();
+      }
+    });
+  } else {
+    showCover();
   }
-});
+}
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </body>
 </html>
