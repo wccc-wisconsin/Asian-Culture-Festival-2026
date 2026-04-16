@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gateway to Asia — Free Asian Culture Festival · May 16, 2026 · Bayshore</title>
+<meta name="description" content="Join the Wisconsin Chinese Chamber of Commerce for Gateway to Asia — a free, family-friendly Asian culture festival at The Yard at Bayshore Shopping Center on Saturday, May 16, 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & TOKENS ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --red:       #B91C1C;
+  --red-deep:  #7F1D1D;
+  --red-dark:  #3d0000;
+  --red-soft:  #FEF2F2;
+  --red-mid:   #FECACA;
+  --gold:      #A16207;
+  --gold-lit:  #D97706;
+  --gold-pale: #FEF9C3;
+  --gold-soft: #FEF3C7;
+  --ink:       #1C0A00;
+  --cream:     #FFFBF2;
+  --paper:     #FDF3E3;
+  --warm:      #FFF7ED;
+  --border:    rgba(28,10,0,0.09);
+  --nav-h:     64px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: var(--ink); overflow-x: hidden; }
+
+/* ── NAV ── */
+#top-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: var(--nav-h);
+  background: rgba(255,251,242,0.97);
+  backdrop-filter: blur(14px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  border-bottom: 1px solid rgba(28,10,0,0.1);
+  box-shadow: 0 2px 16px rgba(28,10,0,0.06);
+}
+.nav-brand { text-decoration: none; display: flex; flex-direction: row; align-items: center; gap: 10px; }
+.nav-brand-img { height: 36px; width: auto; display: block; object-fit: contain; }
+.nav-brand-text { display: flex; flex-direction: column; gap: 2px; }
+.nav-logo { font-family: 'Noto Serif SC', serif; font-size: 17px; color: var(--red); letter-spacing: 3px; line-height: 1; }
+.nav-sub  { font-size: 13px; font-weight: 600; color: var(--red); letter-spacing: 0.05em; }
+nav ul { display: flex; gap: 26px; list-style: none; }
+nav ul a { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(28,10,0,0.6); text-decoration: none; transition: color 0.2s; }
+nav ul a:hover { color: var(--red); }
+.nav-cta {
+  padding: 9px 22px; background: var(--red); color: #fff;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none; transition: background 0.2s, transform 0.15s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--red-deep); transform: translateY(-1px); }
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+.burger span { display: block; width: 22px; height: 2px; background: rgba(28,10,0,0.6); border-radius: 2px; }
+#mobile-menu {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 199;
+  background: rgba(255,251,242,0.99); border-top: 1px solid rgba(28,10,0,0.08);
+  flex-direction: column; padding: 16px 28px 28px;
+  box-shadow: 0 8px 24px rgba(28,10,0,0.08);
+}
+#mobile-menu.open { display: flex; }
+#mobile-menu a { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(28,10,0,0.65); text-decoration: none; padding: 12px 0; border-bottom: 1px solid rgba(28,10,0,0.06); transition: color 0.2s; }
+#mobile-menu a:hover { color: var(--red); }
+#mobile-menu a.m-cta { color: var(--red); font-weight: 600; border-bottom: none; margin-top: 8px; }
+
+/* Offset for fixed nav */
+section[id], div[id] { scroll-margin-top: var(--nav-h); }
+
+/* ── BUTTONS ── */
+.btn-gold {
+  display: inline-block; padding: 14px 36px; background: var(--gold-lit); color: var(--ink);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-gold:hover { background: #fbbf24; transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-block; padding: 14px 36px; border: 1px solid rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.85); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+  text-decoration: none; transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.btn-ghost:hover { border-color: #fff; color: #fff; transform: translateY(-2px); }
+.btn-ghost-dark {
+  display: inline-block; padding: 14px 36px; border: 1px solid rgba(28,10,0,0.25);
+  color: rgba(28,10,0,0.7); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+  text-decoration: none; transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.btn-ghost-dark:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+.btn-red {
+  display: inline-block; padding: 14px 36px; background: var(--red); color: #fff;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+  text-decoration: none; transition: background 0.2s, transform 0.15s;
+}
+.btn-red:hover { background: #991b1b; transform: translateY(-2px); }
+.btn-ink {
+  display: inline-block; padding: 14px 36px; background: var(--ink); color: #fff;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+  text-decoration: none; transition: opacity 0.2s, transform 0.15s;
+}
+.btn-ink:hover { opacity: 0.85; transform: translateY(-2px); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  background: linear-gradient(155deg, var(--red-dark) 0%, var(--red-deep) 52%, #8B1A1A 100%);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: calc(var(--nav-h) + 56px) 32px 80px;
+  text-align: center;
+}
+#hero::before {
+  content: '亚洲文化节';
+  font-family: 'Noto Serif SC', serif; font-size: 240px; font-weight: 700;
+  color: rgba(255,255,255,0.022);
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  white-space: nowrap; pointer-events: none; user-select: none;
+}
+.ring { position: absolute; border-radius: 50%; border: 1px solid rgba(234,179,8,0.08); pointer-events: none; }
+.r1 { width: 820px; height: 820px; top: -270px; right: -300px; }
+.r2 { width: 560px; height: 560px; top: -140px; right: -160px; }
+.r3 { width: 430px; height: 430px; bottom: -170px; left: -170px; }
+
+/* lanterns */
+.lanterns { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-around; padding: 0 24px; z-index: 2; pointer-events: none; }
+.ls { width: 1px; height: 52px; background: rgba(202,138,4,0.35); position: relative; }
+.lb {
+  position: absolute; bottom: -26px; left: 50%; transform: translateX(-50%);
+  width: 18px; height: 24px;
+  background: radial-gradient(ellipse at 38% 32%, #fde68a, #d97706);
+  border-radius: 50% 50% 44% 44%;
+  box-shadow: 0 0 12px rgba(253,230,138,0.55), 0 0 26px rgba(253,230,138,0.18);
+  animation: sway 3.5s ease-in-out infinite;
+}
+.lb::after { content: ''; position: absolute; bottom: -7px; left: 50%; transform: translateX(-50%); width: 2px; height: 7px; background: #d97706; }
+.ls:nth-child(even) .lb { animation-delay: -1.75s; }
+@keyframes sway { 0%,100% { transform: translateX(-50%) rotate(-5deg); } 50% { transform: translateX(-50%) rotate(5deg); } }
+
+.hero-content { position: relative; z-index: 10; max-width: 700px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(234,179,8,0.1); border: 1px solid rgba(234,179,8,0.26);
+  padding: 7px 20px; margin-bottom: 22px;
+  font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold-lit);
+  animation: fadeUp 0.7s 0.1s both;
+}
+.hero-hanzi {
+  display: block; font-family: 'Noto Serif SC', serif; font-size: 46px; font-weight: 700;
+  color: var(--gold-lit); letter-spacing: 10px; margin-bottom: 12px;
+  animation: fadeUp 0.7s 0.25s both, glow 3.5s 1.2s ease-in-out infinite;
+}
+@keyframes glow { 0%,100% { text-shadow: 0 0 28px rgba(234,179,8,0.22); } 50% { text-shadow: 0 0 58px rgba(234,179,8,0.62); } }
+.hero-title {
+  font-family: 'Playfair Display', serif; font-size: 84px; font-weight: 700;
+  line-height: 0.9; color: #fff; letter-spacing: -2px; margin-bottom: 12px;
+  animation: fadeUp 0.7s 0.4s both;
+}
+.hero-title em { font-style: italic; color: var(--gold-lit); }
+.hero-tagline {
+  font-family: 'Playfair Display', serif; font-size: 19px; font-style: italic;
+  color: rgba(255,255,255,0.72); margin-bottom: 26px;
+  animation: fadeUp 0.7s 0.52s both;
+}
+.hero-desc {
+  font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.8;
+  max-width: 500px; margin: 0 auto 34px;
+  animation: fadeUp 0.7s 0.64s both;
+}
+.hero-pills {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 38px; animation: fadeUp 0.7s 0.76s both;
+}
+.pill { padding: 13px 22px; border: 1px solid rgba(234,179,8,0.26); background: rgba(0,0,0,0.2); }
+.pill+.pill { border-left: none; }
+.pill-l { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold-lit); display: block; margin-bottom: 3px; font-weight: 600; }
+.pill-v { font-family: 'Playfair Display', serif; font-size: 15px; color: #fff; }
+.hero-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; animation: fadeUp 0.7s 0.88s both; }
+.scroll-ind {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0.28; z-index: 10; pointer-events: none;
+}
+.scroll-ind span { font-size: 9px; letter-spacing: 0.3em; color: #fff; text-transform: uppercase; }
+.scroll-line { width: 1px; height: 28px; background: linear-gradient(to bottom, var(--gold-lit), transparent); animation: blink 1.8s ease-in-out infinite; }
+@keyframes blink { 0%,100% { opacity: 0.22; } 50% { opacity: 1; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── STATS BAND ── */
+.stats-band {
+  background: var(--gold-lit); padding: 20px 48px;
+  display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;
+}
+.st { text-align: center; }
+.st-n { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1; }
+.st-l { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(28,10,0,0.46); margin-top: 3px; font-weight: 500; }
+.st-d { width: 1px; height: 30px; background: rgba(28,10,0,0.14); }
+
+/* ── COMMON SECTION ── */
+.s-wrap { max-width: 1140px; margin: 0 auto; padding: 88px 56px; }
+.eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--red); font-weight: 600; margin-bottom: 12px;
+}
+.eyebrow::after { content: ''; flex: 0 0 44px; height: 1px; background: var(--red); opacity: 0.26; }
+.s-title { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 18px; }
+.s-title em { font-style: italic; color: var(--red); }
+.s-body { font-size: 16px; line-height: 1.88; color: rgba(28,10,0,0.55); max-width: 600px; }
+
+/* ── ABOUT ── */
+#about { background: var(--cream); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.about-text .s-body { max-width: 100%; }
+.detail-list { margin-top: 36px; display: flex; flex-direction: column; gap: 14px; }
+.detail {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 16px 18px; background: var(--paper); border-left: 3px solid var(--gold-lit);
+}
+.detail-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.detail-label { font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
+.detail-val { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.detail-sub { font-size: 12px; color: rgba(28,10,0,0.46); margin-top: 2px; }
+
+/* ── WHY ── */
+#why { background: var(--paper); }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); margin-top: 48px; }
+.card { background: var(--cream); padding: 40px 32px; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 34px rgba(0,0,0,0.07); z-index: 2; }
+.card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--red); transition: height 0.4s; }
+.card:hover::before { height: 100%; }
+.card-tag { font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+.card-h { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.card-p { font-size: 13px; line-height: 1.72; color: rgba(28,10,0,0.5); }
+
+/* ── CULTURES ── */
+#cultures { background: #fff; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: var(--border); margin-top: 48px; }
+.cult { background: #fff; padding: 30px 24px; transition: background 0.3s, transform 0.25s; cursor: default; }
+.cult:hover { background: var(--red-deep); transform: scale(1.02); z-index: 2; }
+.cult-flag { font-size: 26px; margin-bottom: 10px; display: block; }
+.cult-flag img { width: 44px; height: 32px; object-fit: cover; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.18); display: block; }
+.cult-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 7px; transition: color 0.3s; }
+.cult:hover .cult-name { color: var(--gold-lit); }
+.cult-p { font-size: 12px; line-height: 1.65; color: rgba(28,10,0,0.48); transition: color 0.3s; }
+.cult:hover .cult-p { color: rgba(255,255,255,0.62); }
+
+/* ── ZONES ── */
+#zones { background: var(--paper); }
+.g3z { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 48px; }
+.zone { border: 1px solid var(--border); padding: 32px 26px; background: var(--cream); position: relative; transition: box-shadow 0.3s; }
+.zone::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 3px; background: var(--gold-lit); }
+.zone:hover { box-shadow: 0 8px 22px rgba(0,0,0,0.06); }
+.zone-n { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.zone-p { font-size: 13px; line-height: 1.7; color: rgba(28,10,0,0.48); }
+
+/* ── PASSPORT ── */
+#passport { background: var(--gold-soft); border-top: 4px solid var(--gold-lit); border-bottom: 4px solid var(--gold-lit); }
+#passport .eyebrow { color: var(--red); }
+#passport .eyebrow::after { background: var(--red); opacity: 0.3; }
+#passport .s-title { color: var(--ink); }
+#passport .s-title em { color: var(--red); }
+#passport .s-body { color: rgba(28,10,0,0.65); }
+.steps { display: flex; background: #fff; margin-top: 48px; border: 1px solid rgba(28,10,0,0.1); box-shadow: 0 2px 12px rgba(28,10,0,0.06); }
+.step { flex: 1; padding: 30px 18px; border-right: 1px solid rgba(28,10,0,0.08); text-align: center; }
+.step:last-child { border-right: none; }
+.step-n { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--red); line-height: 1; margin-bottom: 10px; }
+.step-t { font-size: 13px; color: rgba(28,10,0,0.7); line-height: 1.6; }
+.pass-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: rgba(28,10,0,0.08); margin-top: 28px; }
+.pass-col { padding: 28px 22px; background: #fff; }
+.pass-col-h { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 14px; }
+.pass-col ul { list-style: none; }
+.pass-col li { font-size: 13px; color: rgba(28,10,0,0.72); padding: 6px 0; border-bottom: 1px solid rgba(28,10,0,0.07); display: flex; align-items: baseline; gap: 8px; }
+.pass-col li::before { content: '◆'; font-size: 5px; color: var(--red); flex-shrink: 0; }
+
+/* ── SCHEDULE ── */
+#schedule { background: var(--red-soft); border-top: 4px solid var(--red); }
+#schedule .eyebrow { color: var(--red); }
+#schedule .eyebrow::after { background: var(--red); opacity: 0.3; }
+#schedule .s-title { color: var(--ink); }
+#schedule .s-title em { color: var(--red); }
+.sched-list { margin-top: 52px; padding-left: 36px; border-left: 2px solid var(--red-mid); }
+.sched-item {
+  padding: 24px 0; border-bottom: 1px solid rgba(28,10,0,0.08);
+  display: grid; grid-template-columns: 200px 1fr; gap: 22px; align-items: start;
+  position: relative;
+}
+.sched-item::before { content: ''; position: absolute; left: -41px; top: 28px; width: 8px; height: 8px; background: var(--red); transform: rotate(45deg); }
+.sched-time { font-size: 11px; letter-spacing: 0.07em; color: var(--red); font-weight: 600; padding-top: 3px; line-height: 1.5; }
+.sched-h { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.sched-pts { list-style: none; }
+.sched-pts li { font-size: 13px; color: rgba(28,10,0,0.65); padding: 4px 0; display: flex; align-items: baseline; gap: 7px; }
+.sched-pts li::before { content: '·'; color: var(--red); }
+
+/* ── VENDORS ── */
+#vendors { background: var(--paper); }
+.vendor-intro { font-size: 17px; line-height: 1.82; color: rgba(28,10,0,0.56); max-width: 640px; margin-bottom: 44px; }
+.vendor-types { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; margin-bottom: 36px; }
+.vt { background: var(--cream); border: 1px solid var(--border); padding: 28px 24px; position: relative; }
+.vt::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+.vt-h { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.vt-p { font-size: 13px; line-height: 1.7; color: rgba(28,10,0,0.5); }
+.vendor-cta-box { background: var(--cream); border: 1px solid var(--border); padding: 30px 34px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.vcta-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--ink); }
+.vcta-sub { font-size: 13px; color: rgba(28,10,0,0.48); margin-top: 4px; }
+
+/* ── SPONSORS ── */
+#sponsors { background: #fff; }
+.spon-intro { font-size: 17px; line-height: 1.82; color: rgba(28,10,0,0.54); max-width: 620px; margin-bottom: 44px; }
+.g4s { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: var(--border); margin-bottom: 2px; }
+.sc { background: #fff; padding: 32px 22px; position: relative; overflow: hidden; transition: box-shadow 0.3s; }
+.sc:hover { box-shadow: 0 8px 26px rgba(0,0,0,0.08); z-index: 2; }
+.sc.feat::after {
+  content: 'Featured'; position: absolute; top: 14px; right: -26px;
+  background: var(--gold-lit); color: var(--ink);
+  font-size: 8px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 4px 30px; transform: rotate(45deg);
+}
+.sc-tier { font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 5px; }
+.sc-amt { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; margin-bottom: 4px; }
+.sc-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.sc-perks { list-style: none; }
+.sc-perks li { font-size: 12px; color: rgba(28,10,0,0.5); padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 7px; }
+.sc-perks li::before { content: '✓'; color: var(--gold); font-size: 10px; flex-shrink: 0; }
+.spon-contact-bar {
+  background: var(--red-soft); border: 1px solid var(--red-mid); padding: 30px 34px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.scb-text { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--ink); font-weight: 400; }
+.scb-text strong { font-size: 22px; font-weight: 700; color: var(--red); display: block; }
+
+/* ── PARTNERS ── */
+#partners { background: var(--paper); }
+.g4p { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: var(--border); margin-top: 48px; }
+.pc { background: var(--cream); padding: 36px 28px; }
+.pc-logo { width: 100%; max-width: 140px; height: 72px; object-fit: contain; object-position: left center; margin-bottom: 16px; display: block; }
+.pc-abbr { font-family: 'Noto Serif SC', serif; font-size: 26px; font-weight: 700; color: var(--red); letter-spacing: 3px; margin-bottom: 6px; }
+.pc-name { font-size: 10px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+.pc-desc { font-size: 13px; color: rgba(28,10,0,0.5); line-height: 1.65; }
+
+/* ── CONTACT / CTA ── */
+#contact {
+  background: linear-gradient(155deg, #FFF7ED 0%, var(--gold-soft) 60%, #FEF2F2 100%);
+  position: relative; overflow: hidden;
+  border-top: 4px solid var(--red);
+}
+#contact::before {
+  content: '文化'; font-family: 'Noto Serif SC', serif;
+  font-size: 500px; font-weight: 700; color: rgba(28,10,0,0.025);
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  pointer-events: none; user-select: none;
+}
+.cta-inner { max-width: 720px; margin: 0 auto; padding: 96px 56px; text-align: center; position: relative; z-index: 2; }
+.cta-eyebrow { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--red); margin-bottom: 20px; font-weight: 600; }
+.cta-title { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; color: var(--ink); line-height: 1.1; margin-bottom: 18px; }
+.cta-title em { font-style: italic; color: var(--red); }
+.cta-sub { font-size: 16px; color: rgba(28,10,0,0.62); line-height: 1.78; margin-bottom: 40px; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+.cta-email { font-size: 14px; color: rgba(28,10,0,0.5); }
+.cta-email a { color: var(--red); text-decoration: none; font-weight: 500; }
+.cta-email a:hover { text-decoration: underline; }
+
+/* ── FOOTER ── */
+footer {
+  background: #2C0A00; padding: 40px 56px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+}
+.ft-brand { display: flex; flex-direction: row; align-items: center; gap: 14px; }
+.ft-brand-img { height: 48px; width: auto; object-fit: contain; display: block; border-radius: 4px; }
+.ft-brand-text { display: flex; flex-direction: column; }
+.ft-brand .ft-logo { font-family: 'Noto Serif SC', serif; font-size: 20px; color: var(--gold-lit); letter-spacing: 3px; }
+.ft-brand .ft-org { font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 3px; }
+.ft-brand .ft-email { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.ft-brand .ft-email a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.ft-brand .ft-email a:hover { color: var(--gold-lit); }
+.ft-links { display: flex; gap: 22px; flex-wrap: wrap; list-style: none; }
+.ft-links a { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.52); text-decoration: none; transition: color 0.2s; }
+.ft-links a:hover { color: var(--gold-lit); }
+.ft-copy { font-size: 11px; color: rgba(255,255,255,0.32); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .g4, .g4s, .g4p { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
+  #top-nav { padding: 0 20px; }
+  nav ul, .nav-cta { display: none; }
+  .burger { display: flex; }
+  .hero-title { font-size: 52px; }
+  .hero-hanzi { font-size: 32px; letter-spacing: 6px; }
+  .s-wrap { padding: 60px 22px; }
+  .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  .g3, .g3z { grid-template-columns: 1fr; }
+  .g4, .g4s, .g4p { grid-template-columns: 1fr; }
+  .vendor-types { grid-template-columns: 1fr; }
+  .steps { flex-direction: column; }
+  .step { border-right: none; border-bottom: 1px solid rgba(234,179,8,0.1); }
+  .step:last-child { border-bottom: none; }
+  .pass-cols { grid-template-columns: 1fr; }
+  .sched-item { grid-template-columns: 1fr; gap: 6px; }
+  .sched-item::before { display: none; }
+  .sched-list { padding-left: 0; border-left: none; }
+  .stats-band { gap: 20px; padding: 18px 20px; }
+  .st-d { display: none; }
+  footer { flex-direction: column; text-align: center; padding: 36px 22px; }
+  .cta-inner { padding: 70px 24px; }
+  .cta-title { font-size: 36px; }
+  .vendor-cta-box { flex-direction: column; text-align: center; }
+  .spon-contact-bar { flex-direction: column; text-align: center; }
+  .hero-pills { flex-direction: column; align-items: center; }
+  .pill+.pill { border-left: 1px solid rgba(234,179,8,0.26); border-top: none; }
+}
+@media (max-width: 768px) {
+  .gold-sponsors-grid { grid-template-columns: 1fr !important; }
+  .title-sponsor-row { flex-direction: column; align-items: flex-start !important; gap: 16px !important; }
+  .title-sponsor-row img { max-width: 160px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="top-nav">
+  <a class="nav-brand" href="#hero">
+    <img class="nav-brand-img" src="https://wcccbusinessnetwork.org/wp-content/uploads/2026/02/wccc-logo.jpg" alt="WCCC Logo">
+    <div class="nav-brand-text">
+      <span class="nav-sub">Wisconsin Chinese Chamber of Commerce (WCCC)</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#cultures">Cultures</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#passport">Passport</a></li>
+    <li><a href="#vendors">Vendors</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Get Involved</a>
+  <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mobile-menu">
+  <a href="#about"    onclick="closeMenu()">About</a>
+  <a href="#cultures" onclick="closeMenu()">Cultures</a>
+  <a href="#schedule" onclick="closeMenu()">Schedule</a>
+  <a href="#passport" onclick="closeMenu()">Passport</a>
+  <a href="#vendors"  onclick="closeMenu()">Vendors</a>
+  <a href="#sponsors" onclick="closeMenu()">Sponsors</a>
+  <a href="#contact"  onclick="closeMenu()" class="m-cta">Get Involved →</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="ring r3"></div>
+  <div class="lanterns">
+    <div class="ls"><div class="lb"></div></div>
+    <div class="ls"><div class="lb"></div></div>
+    <div class="ls"><div class="lb"></div></div>
+    <div class="ls"><div class="lb"></div></div>
+    <div class="ls"><div class="lb"></div></div>
+    <div class="ls"><div class="lb"></div></div>
+    <div class="ls"><div class="lb"></div></div>
+    <div class="ls"><div class="lb"></div></div>
+    <div class="ls"><div class="lb"></div></div>
+    <div class="ls"><div class="lb"></div></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">WCCC · Asian Pacific Islander Heritage Month · 2026</div>
+    <span class="hero-hanzi">亚洲文化节</span>
+    <h1 class="hero-title">Gateway<br>to <em>Asia</em></h1>
+    <p class="hero-tagline">Open the Door to Culture</p>
+    <p class="hero-desc">A vibrant, free celebration of Asian cultures through performances, food, workshops, and family experiences — open to everyone at The Yard at Bayshore Shopping Center.</p>
+
+    <div class="hero-pills">
+      <div class="pill"><span class="pill-l">Date</span><span class="pill-v">Saturday, May 16, 2026</span></div>
+      <div class="pill"><span class="pill-l">Hours</span><span class="pill-v">11:00 AM – 5:30 PM</span></div>
+      <div class="pill"><span class="pill-l">Location</span><span class="pill-v">The Yard at Bayshore Shopping Center</span></div>
+      <div class="pill"><span class="pill-l">Admission</span><span class="pill-v">Free &amp; Family-Friendly</span></div>
+    </div>
+
+    <div class="hero-btns">
+      <a class="btn-gold" href="https://www.eventbrite.com/e/gateway-to-asia-asian-culture-festival-featuring-aapi-celebration-tickets-1986149112461" target="_blank">Register Now — Enter the Raffle!</a>
+      <a class="btn-ghost" href="#schedule">View Stage Schedule</a>
+      <a class="btn-ghost" href="#passport">Passport Adventure</a>
+      <a class="btn-ghost" href="#contact">Get Involved</a>
+    </div>
+  </div>
+
+  <div class="scroll-ind"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- ═══ STATS BAND ═══ -->
+<div class="stats-band">
+  <div class="st"><div class="st-n">Free</div><div class="st-l">Admission</div></div>
+  <div class="st-d"></div>
+  <div class="st"><div class="st-n">6.5 hrs</div><div class="st-l">Of Programming</div></div>
+  <div class="st-d"></div>
+  <div class="st"><div class="st-n">8+</div><div class="st-l">Asian Cultures</div></div>
+  <div class="st-d"></div>
+  <div class="st"><div class="st-n">20+</div><div class="st-l">Vendors &amp; Booths</div></div>
+  <div class="st-d"></div>
+  <div class="st"><div class="st-n">All Ages</div><div class="st-l">Welcome</div></div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="s-wrap">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="eyebrow">About the Festival</div>
+        <h2 class="s-title">Celebrate. Connect.<br><em>Inspire.</em></h2>
+        <p class="s-body">Gateway to Asia is a free, family-friendly celebration of Asian traditions presented by the Wisconsin Chinese Chamber of Commerce. Bringing together culture, commerce, and community during Asian Pacific Islander Heritage Month, this festival invites all of Wisconsin to discover the beauty, diversity, and joy of Asian heritage — through live performance, authentic food, hands-on workshops, and cultural storytelling.</p>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="btn-red" href="#schedule">View Schedule</a>
+          <a class="btn-ink" href="#cultures">Explore Cultures</a>
+        </div>
+      </div>
+      <div>
+        <div class="detail-list">
+          <div class="detail">
+            <div class="detail-icon">📅</div>
+            <div>
+              <div class="detail-label">Date</div>
+              <div class="detail-val">Saturday, May 16, 2026</div>
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detail-icon">🕙</div>
+            <div>
+              <div class="detail-label">Hours</div>
+              <div class="detail-val">11:00 AM – 5:30 PM</div>
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detail-icon">📍</div>
+            <div>
+              <div class="detail-label">Location</div>
+              <div class="detail-val">The Yard at Bayshore Shopping Center</div>
+              <div class="detail-sub">Glendale, Wisconsin</div>
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detail-icon">🎟️</div>
+            <div>
+              <div class="detail-label">Admission</div>
+              <div class="detail-val">Free — Open to All</div>
+              <div class="detail-sub">Families, community visitors, everyone welcome</div>
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detail-icon">🤝</div>
+            <div>
+              <div class="detail-label">Presented By</div>
+              <div class="detail-val">WCCC, HWCC, MCCC &amp; AREAA Greater Milwaukee</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY IT MATTERS ═══ -->
+<section id="why">
+  <div class="s-wrap">
+    <div class="eyebrow">Why This Festival Matters</div>
+    <h2 class="s-title">Culture · Commerce · <em>Community</em></h2>
+    <div class="g3">
+      <div class="card">
+        <div class="card-tag">Culture</div>
+        <div class="card-h">Celebrate Traditions</div>
+        <p class="card-p">Introduce families and neighbors to Asian traditions through performance, food, crafts, storytelling, and hands-on cultural learning experiences.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">Community</div>
+        <div class="card-h">Connect Wisconsin</div>
+        <p class="card-p">Create a welcoming destination that brings together diverse communities, encourages discovery, and fosters lasting connections across Wisconsin.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">Impact</div>
+        <div class="card-h">Support Small Business</div>
+        <p class="card-p">Spotlight Asian-owned businesses, engage local vendors, and provide a platform for community organizations to connect with new audiences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CULTURES ═══ -->
+<section id="cultures">
+  <div class="s-wrap">
+    <div class="eyebrow">Explore the Cultures</div>
+    <h2 class="s-title">Eight <em>Traditions</em>, One Festival</h2>
+    <div class="g4">
+      <div class="cult"><span class="cult-flag"><img src="https://flagcdn.com/w80/cn.png" alt="China flag"></span><div class="cult-name">China</div><p class="cult-p">Lion Dance, traditional fan dance, classical instruments, Chinese calligraphy, lantern coloring, and dumpling folding.</p></div>
+      <div class="cult"><span class="cult-flag" style="font-size:32px;">🌿</span><div class="cult-name">Hmong Heritage</div><p class="cult-p">Traditional dance, the Qeej bamboo instrument, Pov Pob, Hmong textiles, and cultural storytelling.</p></div>
+      <div class="cult"><span class="cult-flag"><img src="https://flagcdn.com/w80/in.png" alt="India flag"></span><div class="cult-name">India</div><p class="cult-p">Bollywood showcase, classical dance, henna art, spice discovery, and a family Bollywood mini dance class.</p></div>
+      <div class="cult"><span class="cult-flag"><img src="https://flagcdn.com/w80/jp.png" alt="Japan flag"></span><div class="cult-name">Japan</div><p class="cult-p">Japanese Taiko drums, karate, tea ceremony highlights, origami, and hands-on rhythm activities for families.</p></div>
+      <div class="cult"><span class="cult-flag"><img src="https://flagcdn.com/w80/ph.png" alt="Philippines flag"></span><div class="cult-name">Philippines</div><p class="cult-p">Filipino folk dance, live music, Parol lantern craft, and family-friendly cultural participation.</p></div>
+      <div class="cult"><span class="cult-flag"><img src="https://flagcdn.com/w80/id.png" alt="Indonesia flag"></span><div class="cult-name">Indonesia</div><p class="cult-p">Traditional Balinese and Javanese dance, gamelan music, and batik-inspired craft activities.</p></div>
+      <div class="cult"><span class="cult-flag"><img src="https://flagcdn.com/w80/la.png" alt="Laos flag"></span><div class="cult-name">Laos</div><p class="cult-p">Traditional Lao dance and choreography celebrating the cultural heritage of the Lao community.</p></div>
+      <div class="cult"><span class="cult-flag"><img src="https://flagcdn.com/w80/th.png" alt="Thailand flag"></span><div class="cult-name">Thailand</div><p class="cult-p">Classical Thai dance, storytelling, and cultural craft activities rooted in Thai tradition.</p></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ZONES ═══ -->
+<section id="zones">
+  <div class="s-wrap">
+    <div class="eyebrow">Festival Zones</div>
+    <h2 class="s-title">A Full Day of <em>Discovery</em></h2>
+    <div class="g3z">
+      <div class="zone"><div class="zone-n">🎭 Main Performance Stage</div><p class="zone-p">Scheduled cultural performances, martial arts demonstrations, live music, and community showcases running all day.</p></div>
+      <div class="zone"><div class="zone-n">🍜 Taste Zone</div><p class="zone-p">Asian food vendors, culinary demos, bubble tea, sushi handrolls, and chai tastings.</p></div>
+      <div class="zone"><div class="zone-n">🎨 Workshop Alley</div><p class="zone-p">Calligraphy, origami, lantern making, henna art, tea etiquette, Bollywood mini-class, and instrument try-outs.</p></div>
+      <div class="zone"><div class="zone-n">👧 Kids Corner</div><p class="zone-p">Crafts, folktales, percussion play, and engaging cultural activities designed for children and families all day.</p></div>
+      <div class="zone"><div class="zone-n">🤝 Community Marketplace</div><p class="zone-p">Cultural organizations, artisans, schools, community groups, and local businesses sharing their stories and products.</p></div>
+      <div class="zone"><div class="zone-n">📸 Photo &amp; Costume Station</div><p class="zone-p">Traditional dress-up and photo opportunities featuring kimono, sari, Hmong attire, and Baro't Saya.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PASSPORT ═══ -->
+<section id="passport">
+  <div class="s-wrap">
+    <div class="eyebrow">Asia Discovery Passport</div>
+    <h2 class="s-title">Explore, Stamp, <em>Win</em></h2>
+    <p class="s-body">Families can explore the entire festival through the Asia Discovery Passport Adventure. Collect stamps at cultural stations and return a completed passport to the Information Booth for a small prize.</p>
+
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><div class="step-t">Pick up your passport at the Information Booth</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Visit cultural stations around the festival</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t">Join a short activity at each station</div></div>
+      <div class="step"><div class="step-n">4</div><div class="step-t">Collect a stamp in your passport</div></div>
+      <div class="step"><div class="step-n">5</div><div class="step-t">Return your completed passport for a prize!</div></div>
+    </div>
+
+    <div class="pass-cols">
+      <div class="pass-col">
+        <div class="pass-col-h">Cultural Activities</div>
+        <ul>
+          <li>Chinese calligraphy mini lesson</li>
+          <li>Lantern coloring</li>
+          <li>Origami folding</li>
+          <li>Parol lantern craft</li>
+          <li>Batik-inspired stamping</li>
+        </ul>
+      </div>
+      <div class="pass-col">
+        <div class="pass-col-h">More Stations</div>
+        <ul>
+          <li>K-Pop dance moment</li>
+          <li>Taekwondo demonstration</li>
+          <li>Pov Pob ball toss</li>
+          <li>Henna demonstration</li>
+          <li>Bollywood mini dance class</li>
+        </ul>
+      </div>
+      <div class="pass-col">
+        <div class="pass-col-h">Completion Prizes</div>
+        <ul>
+          <li>Festival sticker set</li>
+          <li>Mini lantern</li>
+          <li>Cultural bookmark</li>
+          <li>Asian snack treat</li>
+          <li>Festival wristband</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCHEDULE ═══ -->
+<section id="schedule">
+  <div class="s-wrap">
+    <div class="eyebrow">Main Stage Program</div>
+    <h2 class="s-title">Saturday, May 16 — <em>Full Day</em></h2>
+
+    <div class="sched-list">
+
+      <div class="sched-item">
+        <div class="sched-time">11:00 – 11:15 AM</div>
+        <div>
+          <div class="sched-h">Opening Ceremony</div>
+          <ul class="sched-pts">
+            <li>Welcome from Mayor of Glendale &amp; Milwaukee County Executive</li>
+            <li>WCCC leadership &amp; community partner acknowledgements</li>
+            <li>Festival zones, map, schedule &amp; safety overview</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sched-item">
+        <div class="sched-time">11:15 AM – 12:30 PM</div>
+        <div>
+          <div class="sched-h"><img src="https://flagcdn.com/w40/cn.png" style="height:16px;border-radius:2px;vertical-align:middle;margin-right:6px;" alt=""> China Block — From Festival to Family</div>
+          <ul class="sched-pts">
+            <li>Grand opener: Lion Dance</li>
+            <li>Traditional Fan Dance</li>
+            <li>Classical instruments mini-set (erhu, guzheng, or bamboo flute)</li>
+            <li>On-stage dumpling &amp; Zong Zi folding demo + Taste Zone invitation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sched-item">
+        <div class="sched-time">12:00 – 1:00 PM</div>
+        <div>
+          <div class="sched-h"><img src="https://flagcdn.com/w40/jp.png" style="height:16px;border-radius:2px;vertical-align:middle;margin-right:6px;" alt=""> Japan Block — Beat, Grace &amp; Ceremony</div>
+          <ul class="sched-pts">
+            <li>Taiko drum ensemble</li>
+            <li>Karate demonstration (traditional kata + kid demo)</li>
+            <li>On-stage Taiko call-and-response for kids</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sched-item">
+        <div class="sched-time">1:00 – 2:00 PM</div>
+        <div>
+          <div class="sched-h">🌏 Southeast Asia Block — Islands &amp; Traditions</div>
+          <ul class="sched-pts">
+            <li>Indonesia: Traditional Balinese/Javanese dance + gamelan excerpt</li>
+            <li>Laos: Traditional dance and choreography</li>
+            <li>Philippines: Folk dance + rondalla/folk music</li>
+            <li>Interactive dance demonstration with audience participation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sched-item">
+        <div class="sched-time">2:00 – 3:00 PM</div>
+        <div>
+          <div class="sched-h"><img src="https://flagcdn.com/w40/in.png" style="height:16px;border-radius:2px;vertical-align:middle;margin-right:6px;" alt=""> India Block — Rhythm, Dance &amp; Ritual</div>
+          <ul class="sched-pts">
+            <li>Bollywood dance showcase</li>
+            <li>Classical dance sampler (Bharatanatyam or Kathak)</li>
+            <li>Family Bollywood mini-class (kids + parents welcome)</li>
+            <li>Henna demonstration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sched-item">
+        <div class="sched-time">2:45 – 3:15 PM</div>
+        <div>
+          <div class="sched-h"><img src="https://flagcdn.com/w40/la.png" style="height:16px;border-radius:2px;vertical-align:middle;margin-right:6px;" alt=""> Hmong Heritage Block — Wisconsin Roots &amp; Traditions</div>
+          <ul class="sched-pts">
+            <li>Hmong traditional dance — youth performers</li>
+            <li>Hmong traditional dance — teen performers</li>
+            <li>Cultural introduction to Hmong heritage in Wisconsin</li>
+            <li>Pov Pob audience participation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sched-item">
+        <div class="sched-time">3:15 – 4:15 PM</div>
+        <div>
+          <div class="sched-h">Martial Arts &amp; Movement — Community Active Hour</div>
+          <ul class="sched-pts">
+            <li>Karate showcase + kid belt demo (kids invited on stage)</li>
+            <li>Family yoga session (poses + breathwork)</li>
+            <li>Fusion movement demo: youth martial arts meets dance</li>
+            <li>Plaza dance</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sched-item">
+        <div class="sched-time">4:15 – 5:00 PM</div>
+        <div>
+          <div class="sched-h">🎶 Contemporary &amp; Fusion Showcase — Young Voices of Asia</div>
+          <ul class="sched-pts">
+            <li>Youth ensembles: modern songs, pop covers, community choir</li>
+            <li>Collaborative fusion performance (traditional instrument meets modern beat)</li>
+            <li>Children's community choir piece</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sched-item">
+        <div class="sched-time">5:00 – 5:30 PM</div>
+        <div>
+          <div class="sched-h">Dragon Dance + Closing Celebration</div>
+          <ul class="sched-pts">
+            <li>Dragon Dance grand finale</li>
+            <li>Family costume parade featuring workshop participants</li>
+            <li>Group photo on stage with performers, sponsors &amp; community leaders</li>
+            <li>Sponsor recognition, raffle announcement &amp; final remarks</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VENDORS ═══ -->
+<section id="vendors">
+  <div class="s-wrap">
+    <div class="eyebrow">Vendors &amp; Participation</div>
+    <h2 class="s-title">Join the <em>Festival</em></h2>
+    <p class="vendor-intro">We are welcoming food vendors, cultural organizations, artists, dance studios, and community groups to be part of Gateway to Asia. This is a unique opportunity to share your culture, products, and story with thousands of festival visitors.</p>
+
+    <div class="vendor-types">
+      <div class="vt">
+        <div class="vt-h">🍱 Food Vendors</div>
+        <p class="vt-p">Asian restaurants, food trucks, and culinary businesses. Share authentic flavors with festival visitors in a high-visibility, high-traffic setting.</p>
+      </div>
+      <div class="vt">
+        <div class="vt-h">🎨 Marketplace Vendors</div>
+        <p class="vt-p">Artists, crafters, cultural artisans, and retail businesses. Showcase and sell handmade goods, cultural products, and unique items.</p>
+      </div>
+      <div class="vt">
+        <div class="vt-h">🏫 Community Organizations</div>
+        <p class="vt-p">Cultural nonprofits, schools, language programs, and community groups. Connect with the public and raise awareness for your mission.</p>
+      </div>
+      <div class="vt">
+        <div class="vt-h">🥋 Activity Partners</div>
+        <p class="vt-p">Martial arts studios, dance schools, and cultural educators interested in hosting interactive demonstrations or workshop stations.</p>
+      </div>
+    </div>
+
+    <div class="vendor-cta-box">
+      <div>
+        <div class="vcta-text">Ready to be part of Gateway to Asia?</div>
+        <div class="vcta-sub">Contact us to learn about booth availability, setup details, and participation requirements.</div>
+      </div>
+      <a class="btn-red" href="#contact">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SPONSORS ═══ -->
+<section id="sponsors">
+  <div class="s-wrap">
+    <div class="eyebrow">Sponsorship Opportunities</div>
+    <h2 class="s-title">Support Culture &amp; <em>Community</em></h2>
+    <p class="spon-intro">Align your brand with one of Wisconsin's premier Asian cultural events. Gateway to Asia offers meaningful visibility and community connection for sponsors of all sizes.</p>
+
+    <!-- Confirmed Sponsors -->
+    <div class="eyebrow" style="margin-bottom:12px;">Our Sponsors</div>
+
+    <!-- Title Sponsor — full row -->
+    <div class="title-sponsor-row" style="background:var(--cream);border:1px solid var(--border);border-top:4px solid var(--red);padding:28px 36px;margin-bottom:2px;position:relative;overflow:hidden;display:flex;align-items:center;gap:36px;">
+      <div style="position:absolute;top:14px;right:-30px;background:var(--red);color:#fff;font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:4px 36px;transform:rotate(45deg);">Title Sponsor</div>
+      <img src="https://wcccbusinessnetwork.org/wp-content/uploads/2026/03/CountyHumanResourcesLogo.png" alt="Milwaukee County HR" style="max-width:200px;max-height:72px;object-fit:contain;flex-shrink:0;">
+      <div>
+        <div style="font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:6px;">Title Sponsor</div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:4px;">Milwaukee County HR</div>
+        <div style="font-size:13px;color:rgba(28,10,0,0.5);line-height:1.6;">We are proud to have Milwaukee County Human Resources as our Title Sponsor — helping connect community, culture, and careers.</div>
+      </div>
+    </div>
+
+    <!-- Gold Sponsors — two columns -->
+    <div class="gold-sponsors-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);margin-bottom:36px;">
+      <div style="background:var(--cream);padding:28px 32px;border-top:4px solid var(--gold-lit);display:flex;align-items:center;gap:24px;">
+        <img src="https://wcccbusinessnetwork.org/wp-content/uploads/2026/04/NSCC-LONG_Color-Black.png" alt="North Shore Chamber of Commerce" style="max-width:180px;max-height:64px;object-fit:contain;flex-shrink:0;">
+        <div>
+          <div style="font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:5px;">Gold Sponsor</div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ink);">The North Shore Chamber of Commerce</div>
+        </div>
+      </div>
+      <div style="background:var(--cream);padding:28px 32px;border-top:4px solid var(--gold-lit);display:flex;align-items:center;gap:24px;">
+        <img src="https://wcccbusinessnetwork.org/wp-content/uploads/2026/04/Update-Site-Logo.png" alt="Discover The North Shore" style="max-width:180px;max-height:64px;object-fit:contain;flex-shrink:0;">
+        <div>
+          <div style="font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:5px;">Gold Sponsor</div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ink);">Discover The North Shore</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin-bottom:12px;">Sponsorship Tiers</div>
+    <div class="g4s">
+      <div class="sc feat">
+        <div class="sc-tier">Presenting</div>
+        <div class="sc-amt">$3,000</div>
+        <div class="sc-name">Title Sponsor</div>
+        <ul class="sc-perks">
+          <li>Premier logo placement on all materials</li>
+          <li>Recognition from the main stage</li>
+          <li>Dedicated booth presence at the event</li>
+          <li>Visibility across all event marketing</li>
+        </ul>
+      </div>
+      <div class="sc">
+        <div class="sc-tier">Performance</div>
+        <div class="sc-amt">$1,500</div>
+        <div class="sc-name">Stage Sponsor</div>
+        <ul class="sc-perks">
+          <li>Stage signage &amp; recognition</li>
+          <li>MC acknowledgement during performances</li>
+          <li>Performance area branding</li>
+        </ul>
+      </div>
+      <div class="sc">
+        <div class="sc-tier">Family</div>
+        <div class="sc-amt">$1,000</div>
+        <div class="sc-name">Kids Corner Sponsor</div>
+        <ul class="sc-perks">
+          <li>Branding in the family activity area</li>
+          <li>Recognition in event materials</li>
+          <li>Direct connection with family audiences</li>
+        </ul>
+      </div>
+      <div class="sc">
+        <div class="sc-tier">Community</div>
+        <div class="sc-amt">$500</div>
+        <div class="sc-name">Community Sponsor</div>
+        <ul class="sc-perks">
+          <li>Logo inclusion in event materials</li>
+          <li>Event acknowledgement</li>
+          <li>Community support recognition</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spon-contact-bar">
+      <div>
+        <div class="scb-text">Interested in sponsoring?</div>
+        <strong class="scb-text" style="font-size:22px;color:var(--red);display:block;">Let's talk about partnership opportunities.</strong>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <a class="btn-gold" href="sponsor-form.html">Apply Now</a>
+        <a class="btn-ghost-dark" href="#contact">Contact WCCC</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARTNERS ═══ -->
+<section id="partners">
+  <div class="s-wrap">
+    <div class="eyebrow">Presented By &amp; Community Partners</div>
+    <h2 class="s-title">Together We <em>Celebrate</em></h2>
+    <div class="g4p">
+      <div class="pc">
+        <img class="pc-logo" src="https://wcccbusinessnetwork.org/wp-content/uploads/2026/02/wccc-logo.jpg" alt="WCCC Logo">
+        <div class="pc-abbr">WCCC</div>
+        <div class="pc-name">Presenting Organization</div>
+        <p class="pc-desc">Wisconsin Chinese Chamber of Commerce supports small businesses, entrepreneurship, and community connection across Wisconsin.</p>
+      </div>
+      <div class="pc">
+        <img class="pc-logo" src="https://wcccbusinessnetwork.org/wp-content/uploads/2026/03/3926CCF5-9922-44ED-B74B-8E8273CA49AB_L0_001.png" alt="HWCC Logo">
+        <div class="pc-abbr">HWCC</div>
+        <div class="pc-name">Co-Host</div>
+        <p class="pc-desc">Hmong Wisconsin Chamber of Commerce advances entrepreneurship, professional development, and economic opportunity within the Hmong community.</p>
+      </div>
+      <div class="pc">
+        <img class="pc-logo" src="https://wcccbusinessnetwork.org/wp-content/uploads/2026/02/MCCC-Logo-Big-700x531-1.png" alt="MCCC Logo">
+        <div class="pc-abbr">MCCC</div>
+        <div class="pc-name">Co-Host</div>
+        <p class="pc-desc">Milwaukee Chinese Community Center promotes Chinese language education, cultural programs, and community engagement in the Milwaukee area.</p>
+      </div>
+      <div class="pc">
+        <img class="pc-logo" src="https://wcccbusinessnetwork.org/wp-content/uploads/2026/03/IMG_0021.png" alt="AREAA Logo">
+        <div class="pc-abbr">AREAA</div>
+        <div class="pc-name">Co-Host</div>
+        <p class="pc-desc">AREAA Greater Milwaukee supports homeownership, housing education, and professional collaboration in the Asian community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT / CTA ═══ -->
+<section id="contact">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">Wisconsin Chinese Chamber of Commerce</div>
+    <h2 class="cta-title">Ready to Open the<br>Door to <em>Culture?</em></h2>
+    <p class="cta-sub">Whether you want to attend, volunteer, vend, or sponsor — Gateway to Asia has a place for you. Reach out to get involved and help make this a celebration Wisconsin will remember.</p>
+    <div class="cta-btns">
+      <a class="btn-red" href="https://www.eventbrite.com/e/gateway-to-asia-asian-culture-festival-featuring-aapi-celebration-tickets-1986149112461" target="_blank">Register Now — Enter the Raffle!</a>
+      <a class="btn-ghost-dark" href="#vendors">Become a Vendor</a>
+      <a class="btn-ghost-dark" href="#sponsors">Explore Sponsorship</a>
+    </div>
+    <p class="cta-email">General inquiries: <a href="mailto:info@wisccc.org">info@wisccc.org</a></p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="ft-brand">
+    <img class="ft-brand-img" src="https://wcccbusinessnetwork.org/wp-content/uploads/2026/02/wccc-logo.jpg" alt="WCCC Logo">
+    <div class="ft-brand-text">
+      <div class="ft-logo">WCCC</div>
+      <div class="ft-org">Wisconsin Chinese Chamber of Commerce</div>
+    <div class="ft-email"><a href="mailto:info@wisccc.org">info@wisccc.org</a></div>
+    </div>
+  </div>
+  <ul class="ft-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#cultures">Cultures</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#passport">Passport</a></li>
+    <li><a href="#vendors">Vendors</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="ft-copy">© 2026 Wisconsin Chinese Chamber of Commerce · All Rights Reserved</div>
+</footer>
+
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobile-menu');
+    const burger = document.getElementById('burger');
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

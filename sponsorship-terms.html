@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sponsorship Terms & Conditions — Gateway to Asia 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:      #B91C1C;
+  --red-deep: #7F1D1D;
+  --red-dark: #3d0000;
+  --gold:     #D97706;
+  --gold-lit: #F59E0B;
+  --gold-pale:#FEF3C7;
+  --cream:    #FFFBF2;
+  --paper:    #FDF5E6;
+  --ink:      #1C0A00;
+  --muted:    #7c6a58;
+  --border:   rgba(28,10,0,0.1);
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.7;
+}
+
+/* ── BANNER ── */
+.banner {
+  background:var(--red-dark);
+  padding:9px 0;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(253,230,138,.7);
+}
+
+/* ── HERO ── */
+.hero {
+  background:linear-gradient(150deg, var(--red-dark) 0%, var(--red-deep) 55%, #8B1A1A 100%);
+  padding:52px 24px 44px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before {
+  content:'';
+  position:absolute;
+  width:500px;height:500px;
+  border-radius:50%;
+  border:1px solid rgba(234,179,8,.08);
+  top:-200px;right:-160px;
+  pointer-events:none;
+}
+.hero::after {
+  content:'';
+  position:absolute;
+  width:340px;height:340px;
+  border-radius:50%;
+  border:1px solid rgba(234,179,8,.1);
+  bottom:-140px;left:-100px;
+  pointer-events:none;
+}
+.hero-eyebrow {
+  display:inline-block;
+  border:1px solid rgba(234,179,8,.3);
+  background:rgba(234,179,8,.08);
+  color:var(--gold-lit);
+  padding:5px 16px;
+  font-size:9px;letter-spacing:.38em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.hero h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,4.5vw,52px);
+  font-weight:700;color:#fff;
+  line-height:1.08;margin-bottom:10px;
+}
+.hero h1 em { font-style:italic;color:var(--gold-lit); }
+.hero-sub {
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;
+  color:rgba(255,255,255,.6);
+  margin-bottom:0;
+}
+
+/* ── LAYOUT ── */
+.page {
+  max-width:860px;
+  margin:0 auto;
+  padding:52px 24px 80px;
+}
+
+/* ── META BAR ── */
+.meta-bar {
+  display:flex;flex-wrap:wrap;gap:0;
+  border:1px solid var(--border);
+  margin-bottom:44px;
+}
+.meta-item {
+  flex:1;min-width:160px;
+  padding:14px 20px;
+  background:var(--paper);
+  border-right:1px solid var(--border);
+}
+.meta-item:last-child { border-right:none; }
+.meta-label {
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:3px;
+}
+.meta-val { font-size:13px;color:var(--ink);font-weight:500; }
+
+/* ── SECTION ── */
+.section { margin-bottom:38px; }
+.section-num {
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;
+  background:var(--red);color:#fff;
+  font-size:12px;font-weight:700;
+  margin-right:10px;flex-shrink:0;
+  vertical-align:middle;
+}
+.section h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;
+  color:var(--ink);
+  margin-bottom:14px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--gold);
+  display:flex;align-items:center;
+}
+.section p {
+  font-size:14px;color:var(--muted);
+  margin-bottom:10px;line-height:1.8;
+}
+.section ul, .section ol {
+  padding-left:20px;
+  margin-bottom:10px;
+}
+.section li {
+  font-size:14px;color:var(--muted);
+  padding:4px 0;line-height:1.8;
+}
+.section li::marker { color:var(--gold); }
+
+/* ── HIGHLIGHT BOX ── */
+.highlight {
+  background:var(--gold-pale);
+  border:1px solid rgba(217,119,6,.25);
+  border-left:4px solid var(--gold);
+  padding:16px 20px;
+  margin:16px 0;
+  font-size:13px;color:#92400e;
+  line-height:1.7;
+}
+.highlight strong { display:block;margin-bottom:4px;color:#78350f; }
+
+/* ── WARNING BOX ── */
+.warning {
+  background:#FEF2F2;
+  border:1px solid rgba(185,28,28,.2);
+  border-left:4px solid var(--red);
+  padding:16px 20px;
+  margin:16px 0;
+  font-size:13px;color:#7f1d1d;
+  line-height:1.7;
+}
+
+/* ── TIERS TABLE ── */
+.tiers-table {
+  width:100%;border-collapse:collapse;
+  margin:16px 0;font-size:13px;
+}
+.tiers-table th {
+  background:var(--red);color:#fff;
+  padding:10px 14px;text-align:left;
+  font-size:11px;letter-spacing:.08em;
+}
+.tiers-table td {
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+  color:var(--muted);
+  vertical-align:top;
+}
+.tiers-table tr:nth-child(even) td { background:var(--paper); }
+.tiers-table td:first-child { font-weight:600;color:var(--ink); }
+.tiers-table td.amt { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--red); }
+
+/* ── PAYMENT BOX ── */
+.payment-box {
+  background:#fff;
+  border:1px solid var(--border);
+  padding:24px 28px;
+  margin:16px 0;
+}
+.payment-box h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:700;
+  color:var(--ink);margin-bottom:14px;
+  padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.payment-row {
+  display:flex;align-items:flex-start;gap:14px;
+  padding:10px 0;border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+.payment-row:last-child { border-bottom:none; }
+.payment-icon {
+  width:32px;height:32px;
+  background:var(--red);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.payment-row strong { display:block;color:var(--ink);margin-bottom:2px; }
+.payment-row span { color:var(--muted);line-height:1.6; }
+
+/* ── BACK BUTTON ── */
+.back-btn {
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--red);color:#fff;
+  padding:12px 28px;
+  font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;
+  transition:background .2s;
+  margin-top:32px;
+}
+.back-btn:hover { background:var(--red-deep); }
+
+/* ── FOOTER ── */
+.foot {
+  background:var(--red-dark);
+  padding:24px;text-align:center;
+}
+.foot p { font-size:12px;color:rgba(255,255,255,.4);line-height:1.7; }
+.foot a { color:rgba(253,230,138,.65);text-decoration:none; }
+.foot a:hover { color:var(--gold-lit); }
+
+@media(max-width:600px){
+  .meta-bar { flex-direction:column; }
+  .meta-item { border-right:none;border-bottom:1px solid var(--border); }
+  .sig-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="banner">Gateway to Asia · Asian Culture Festival featuring AAPI Celebration · May 16, 2026</div>
+
+<header class="hero">
+  <div class="hero-eyebrow">Legal Document</div>
+  <h1>Sponsorship Terms<br>&amp; <em>Conditions</em></h1>
+  <p class="hero-sub">Gateway to Asia — Asian Culture Festival featuring AAPI Celebration</p>
+</header>
+
+<div class="page">
+
+  <!-- Meta bar -->
+  <div class="meta-bar">
+    <div class="meta-item"><div class="meta-label">Event</div><div class="meta-val">Gateway to Asia 2026</div></div>
+    <div class="meta-item"><div class="meta-label">Date</div><div class="meta-val">Saturday, May 16, 2026</div></div>
+    <div class="meta-item"><div class="meta-label">Venue</div><div class="meta-val">Bayshore Shopping Center, Glendale WI</div></div>
+    <div class="meta-item"><div class="meta-label">Organizer</div><div class="meta-val">Wisconsin Chinese Chamber of Commerce</div></div>
+  </div>
+
+  <!-- 1. Agreement -->
+  <div class="section">
+    <h2><span class="section-num">1</span> Agreement to Terms</h2>
+    <p>By submitting a sponsorship form and/or making a sponsorship payment, the sponsoring organization ("Sponsor") agrees to be bound by these Sponsorship Terms and Conditions as set forth by the Wisconsin Chinese Chamber of Commerce ("WCCC") for the Gateway to Asia — Asian Culture Festival featuring AAPI Celebration ("Event") to be held on Saturday, May 16, 2026 at Bayshore Shopping Center, Glendale, Wisconsin.</p>
+    <p>These terms constitute a binding agreement between the Sponsor and WCCC. Please read carefully before submitting your sponsorship.</p>
+  </div>
+
+  <!-- 2. Sponsorship Tiers -->
+  <div class="section">
+    <h2><span class="section-num">2</span> Sponsorship Tiers & Benefits</h2>
+    <p>The following sponsorship tiers are available for the Event:</p>
+    <table class="tiers-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Investment</th>
+          <th>Key Benefits</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Title Sponsor</td>
+          <td class="amt">$3,000</td>
+          <td>Premier logo on all materials, main stage recognition, dedicated booth, press release inclusion, VIP seating</td>
+        </tr>
+        <tr>
+          <td>Stage Sponsor</td>
+          <td class="amt">$1,500</td>
+          <td>Stage signage & branding, MC acknowledgement, logo on website & printed program, social media post</td>
+        </tr>
+        <tr>
+          <td>Kids Corner Sponsor</td>
+          <td class="amt">$1,000</td>
+          <td>Branding in family activity area, recognition in event materials, social media post</td>
+        </tr>
+        <tr>
+          <td>Community Sponsor</td>
+          <td class="amt">$500</td>
+          <td>Logo inclusion in event materials, event acknowledgement from stage</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>WCCC reserves the right to adjust sponsorship benefits at its discretion. Any material changes will be communicated to the Sponsor in writing prior to the Event.</p>
+  </div>
+
+  <!-- 3. Payment -->
+  <div class="section">
+    <h2><span class="section-num">3</span> Payment Terms</h2>
+    <p>Full sponsorship payment is due within <strong>14 days</strong> of submitting the sponsorship form. Sponsorship is not confirmed until payment is received in full.</p>
+
+    <div class="payment-box">
+      <h3>Accepted Payment Methods</h3>
+      <div class="payment-row">
+        <div class="payment-icon">💳</div>
+        <div>
+          <strong>Credit / Debit Card (Online)</strong>
+          <span>Pay securely online at <a href="https://www.wisccc.org/donate" style="color:var(--red);">wisccc.org/donate</a>. Visa, Mastercard, American Express, and Discover accepted.</span>
+        </div>
+      </div>
+      <div class="payment-row">
+        <div class="payment-icon">✉️</div>
+        <div>
+          <strong>Check</strong>
+          <span>Make check payable to: <strong>Wisconsin Chinese Chamber of Commerce</strong><br>
+          Mail to: 6027 W Vliet Street, Wauwatosa, WI 53213<br>
+          Please include your organization name and sponsorship tier in the memo line.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>Late Payment</strong>
+      Sponsorships not paid within 14 days of submission may be forfeited and the tier made available to other sponsors. WCCC will make reasonable efforts to contact the Sponsor before releasing the tier.
+    </div>
+  </div>
+
+  <!-- 4. Logo & Marketing Materials -->
+  <div class="section">
+    <h2><span class="section-num">4</span> Logo & Marketing Materials</h2>
+    <p>Sponsors are required to provide a high-resolution logo file (PNG, JPG, SVG, EPS, or AI format) within <strong>7 days</strong> of confirmed payment. Logos should be provided at a minimum resolution of 300 DPI.</p>
+    <ul>
+      <li>WCCC reserves the right to resize, recolor, or adjust logos as needed to fit marketing materials while maintaining brand integrity.</li>
+      <li>Sponsors grant WCCC a non-exclusive, royalty-free license to use their logo and name in connection with the Event.</li>
+      <li>WCCC will make reasonable efforts to ensure accurate logo representation but is not liable for minor variations due to printing or digital display.</li>
+      <li>Logos submitted after the marketing deadline may not be included in all printed materials.</li>
+    </ul>
+    <div class="warning">
+      Logo submission deadline: <strong>April 15, 2026.</strong> Logos submitted after this date may not appear in printed materials but will be included in digital assets where possible.
+    </div>
+  </div>
+
+  <!-- 5. Event Booth -->
+  <div class="section">
+    <h2><span class="section-num">5</span> Booth & On-Site Presence</h2>
+    <p>Title Sponsors receive a dedicated booth at the Event. The following terms apply to all on-site booth presence:</p>
+    <ul>
+      <li>Booth size, location, and setup details will be communicated by WCCC no later than <strong>May 1, 2026</strong>.</li>
+      <li>Sponsors are responsible for providing their own booth materials, displays, and staffing.</li>
+      <li>All booth activities must be family-friendly and consistent with the cultural nature of the Event.</li>
+      <li>Sponsors must comply with all Bayshore Shopping Center rules and regulations.</li>
+      <li>WCCC reserves the right to request removal of any booth materials deemed inappropriate.</li>
+      <li>Load-in time will be between 8:00 AM – 10:30 AM on the day of the Event.</li>
+    </ul>
+  </div>
+
+  <!-- 6. Cancellation & Refunds -->
+  <div class="section">
+    <h2><span class="section-num">6</span> Cancellation & Refund Policy</h2>
+    <ul>
+      <li><strong>Cancellation by Sponsor:</strong> Sponsorships cancelled more than 60 days before the Event (before March 17, 2026) will receive a full refund minus a $50 processing fee.</li>
+      <li><strong>Cancellation 30–60 days before Event:</strong> 50% refund will be issued.</li>
+      <li><strong>Cancellation less than 30 days before Event:</strong> No refund will be issued. WCCC may offer a credit toward a future event at its discretion.</li>
+      <li><strong>Cancellation by WCCC:</strong> In the event WCCC cancels the Event due to circumstances beyond its control (including but not limited to extreme weather, public health emergency, or venue unavailability), all Sponsors will receive a full refund within 30 days or the option to apply the sponsorship to a future event.</li>
+    </ul>
+    <div class="highlight">
+      <strong>Event Postponement</strong>
+      If the Event is postponed rather than cancelled, all sponsorship agreements will remain in effect for the rescheduled date. Sponsors who cannot attend the rescheduled date may request a refund subject to the cancellation terms above.
+    </div>
+  </div>
+
+  <!-- 7. Exclusivity -->
+  <div class="section">
+    <h2><span class="section-num">7</span> Exclusivity</h2>
+    <p>The Title Sponsor tier is exclusive — only one Title Sponsor will be accepted per Event. All other tiers are non-exclusive unless specifically negotiated in writing with WCCC.</p>
+    <p>WCCC will not accept sponsorships from organizations whose products, services, or activities conflict with the mission and values of WCCC or the cultural nature of the Event.</p>
+  </div>
+
+  <!-- 8. Conduct -->
+  <div class="section">
+    <h2><span class="section-num">8</span> Conduct & Compliance</h2>
+    <p>All Sponsors and their representatives must:</p>
+    <ul>
+      <li>Conduct themselves in a professional and respectful manner at all times during the Event.</li>
+      <li>Comply with all applicable local, state, and federal laws and regulations.</li>
+      <li>Respect the cultural significance of the Event and treat all attendees, performers, and volunteers with dignity.</li>
+      <li>Not engage in any discriminatory, harassing, or offensive behavior.</li>
+    </ul>
+    <p>WCCC reserves the right to remove any Sponsor or their representatives from the Event for conduct violations without refund.</p>
+  </div>
+
+  <!-- 9. Liability -->
+  <div class="section">
+    <h2><span class="section-num">9</span> Limitation of Liability</h2>
+    <p>WCCC's liability to any Sponsor shall not exceed the total amount of the sponsorship fee paid. WCCC shall not be liable for any indirect, incidental, special, or consequential damages arising out of or related to the sponsorship agreement.</p>
+    <p>Sponsors participate in the Event at their own risk. WCCC is not responsible for theft, loss, or damage to Sponsor property during the Event. Sponsors are encouraged to obtain their own insurance coverage.</p>
+  </div>
+
+  <!-- 10. Intellectual Property -->
+  <div class="section">
+    <h2><span class="section-num">10</span> Intellectual Property</h2>
+    <p>All Event branding, materials, photography, and content produced by WCCC remain the intellectual property of WCCC. Sponsors may use Event-related photos featuring their booth or logo for their own promotional purposes with credit to WCCC.</p>
+    <p>Sponsors grant WCCC permission to photograph and record their booth and representatives during the Event for use in WCCC marketing and promotional materials.</p>
+  </div>
+
+  <!-- 11. Governing Law -->
+  <div class="section">
+    <h2><span class="section-num">11</span> Governing Law</h2>
+    <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of the State of Wisconsin. Any disputes arising under these terms shall be resolved in the courts of Milwaukee County, Wisconsin.</p>
+  </div>
+
+  <!-- 12. Contact -->
+  <div class="section">
+    <h2><span class="section-num">12</span> Contact & Questions</h2>
+    <p>For questions regarding these Terms and Conditions or your sponsorship, please contact:</p>
+    <div class="payment-box" style="margin-top:12px;">
+      <div class="payment-row" style="border-bottom:none;">
+        <div class="payment-icon">📧</div>
+        <div>
+          <strong>Wisconsin Chinese Chamber of Commerce (WCCC)</strong>
+          <span>
+            Email: <a href="mailto:info@wisccc.org" style="color:var(--red);">info@wisccc.org</a><br>
+            Phone: (414) 409-6288<br>
+            Address: 6027 W Vliet Street, Wauwatosa, WI 53213<br>
+            Website: <a href="https://wcccbusinessnetwork.org/asian-culture-festival.html" style="color:var(--red);" target="_blank">Asian Culture Festival</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight" style="text-align:center;margin-bottom:32px;">
+    <strong>Digital Acceptance</strong>
+    By checking the agreement box and submitting the sponsorship form, the Sponsor acknowledges they have read, understood, and agree to be bound by these Terms and Conditions. This constitutes a legally binding digital agreement under the Electronic Signatures in Global and National Commerce Act (E-Sign Act).
+  </div>
+
+  <div style="text-align:center;">
+    <a href="sponsor-form.html" class="back-btn">← Back to Sponsorship Form</a>
+  </div>
+
+</div>
+
+<footer class="foot">
+  <p>Wisconsin Chinese Chamber of Commerce (WCCC) · <a href="mailto:info@wisccc.org">info@wisccc.org</a> · (414) 409-6288</p>
+  <p style="margin-top:4px;"><a href="https://wcccbusinessnetwork.org/asian-culture-festival.html" target="_blank">Asian Culture Festival</a> · © 2026 Wisconsin Chinese Chamber of Commerce · All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

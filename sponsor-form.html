@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sponsorship Form — Gateway to Asia 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:      #B91C1C;
+  --red-deep: #7F1D1D;
+  --red-dark: #3d0000;
+  --gold:     #D97706;
+  --gold-lit: #F59E0B;
+  --gold-pale:#FEF3C7;
+  --cream:    #FFFBF2;
+  --paper:    #FDF5E6;
+  --ink:      #1C0A00;
+  --muted:    #7c6a58;
+  --border:   rgba(28,10,0,0.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background: var(--cream);
+  color:var(--ink);
+  min-height:100vh;
+}
+
+/* ── TOP BANNER ── */
+.banner{
+  background: var(--red-dark);
+  padding: 10px 0;
+  text-align:center;
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(253,230,138,.75);
+}
+
+/* ── HERO ── */
+.hero{
+  background: linear-gradient(150deg, var(--red-dark) 0%, var(--red-deep) 50%, #8B1A1A 100%);
+  padding: 64px 24px 52px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'亚洲文化节';
+  font-family:'Cormorant Garamond',serif;
+  font-size:220px;
+  font-weight:700;
+  color:rgba(255,255,255,.03);
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;
+  pointer-events:none;
+}
+.hero-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(234,179,8,.1);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  display:inline-block;
+  border:1px solid rgba(234,179,8,.3);
+  background:rgba(234,179,8,.08);
+  color:var(--gold-lit);
+  padding:6px 18px;
+  font-size:10px;letter-spacing:.35em;text-transform:uppercase;
+  margin-bottom:20px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,64px);
+  font-weight:700;
+  color:#fff;
+  line-height:1.05;
+  margin-bottom:10px;
+}
+.hero h1 em{font-style:italic;color:var(--gold-lit);}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-style:italic;
+  color:rgba(255,255,255,.65);
+  margin-bottom:28px;
+}
+.hero-pills{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:0;
+  margin-bottom:0;
+}
+.hpill{
+  padding:10px 20px;
+  border:1px solid rgba(234,179,8,.25);
+  background:rgba(0,0,0,.2);
+}
+.hpill+.hpill{border-left:none;}
+.hpill-l{font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lit);display:block;margin-bottom:3px;}
+.hpill-v{font-family:'Cormorant Garamond',serif;font-size:15px;color:#fff;}
+
+/* ── LAYOUT ── */
+.page{max-width:1100px;margin:0 auto;padding:56px 24px 80px;}
+.two-col{display:grid;grid-template-columns:1fr 1.5fr;gap:40px;align-items:start;}
+
+/* ── SPONSORSHIP KIT SIDEBAR ── */
+.kit{position:sticky;top:24px;}
+.kit-head{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:700;
+  color:var(--ink);margin-bottom:4px;
+}
+.kit-sub{font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6;}
+
+.tier{
+  background:var(--paper);
+  border:1px solid var(--border);
+  border-left:4px solid var(--border);
+  padding:18px 20px;
+  margin-bottom:10px;
+  cursor:pointer;
+  transition:all .2s;
+  position:relative;
+}
+.tier:hover{border-left-color:var(--gold);transform:translateX(3px);}
+.tier.active{
+  border-left-color:var(--red);
+  background:#fff;
+  box-shadow:0 4px 20px rgba(185,28,28,.08);
+}
+.tier.featured{
+  background:linear-gradient(135deg,#fff8e7,#fff);
+  border-color:#e5c06f;
+  border-left-color:var(--gold);
+}
+.tier.featured.active{border-left-color:var(--red);}
+.tier-badge{
+  position:absolute;top:12px;right:12px;
+  background:var(--gold);color:var(--ink);
+  font-size:8px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  padding:3px 8px;
+}
+.tier-label{font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:4px;}
+.tier-amt{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--red);line-height:1;margin-bottom:4px;}
+.tier-name{font-weight:500;font-size:14px;color:var(--ink);margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.tier-perks{list-style:none;}
+.tier-perks li{font-size:12px;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:7px;}
+.tier-perks li::before{content:'✓';color:var(--gold);font-size:10px;flex-shrink:0;}
+
+.kit-dl{
+  display:flex;align-items:center;gap:12px;
+  background:var(--red-dark);
+  padding:14px 18px;
+  margin-top:18px;
+  text-decoration:none;
+  transition:opacity .2s;
+}
+.kit-dl:hover{opacity:.88;}
+.kit-dl-icon{font-size:22px;}
+.kit-dl-text{color:#fff;}
+.kit-dl-text strong{display:block;font-size:13px;font-weight:500;letter-spacing:.02em;}
+.kit-dl-text span{font-size:11px;color:rgba(255,255,255,.55);}
+
+/* ── FORM PANEL ── */
+.form-panel{background:#fff;border:1px solid var(--border);padding:36px;}
+
+.form-section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;
+  color:var(--ink);
+  margin-bottom:20px;
+  padding-bottom:10px;
+  border-bottom:2px solid var(--gold);
+  display:flex;align-items:center;gap:10px;
+}
+.form-section-title span{
+  background:var(--red);color:#fff;
+  width:26px;height:26px;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;font-family:'DM Sans',sans-serif;
+  flex-shrink:0;
+}
+
+.field{margin-bottom:18px;}
+.field label{
+  display:block;font-size:11px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:6px;
+}
+.field label .req{color:var(--red);}
+.field input,.field select,.field textarea{
+  width:100%;padding:12px 14px;
+  border:1px solid var(--border);
+  background:var(--cream);
+  font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);
+  transition:border-color .2s,box-shadow .2s;
+  outline:none;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(185,28,28,.08);
+  background:#fff;
+}
+.field textarea{resize:vertical;min-height:90px;}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237c6a58' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+.tier-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+.tier-opt{
+  border:1px solid var(--border);
+  padding:14px;cursor:pointer;
+  transition:all .2s;position:relative;
+  background:var(--cream);
+}
+.tier-opt:hover{border-color:var(--gold);}
+.tier-opt.selected{border-color:var(--red);background:#fff;box-shadow:0 2px 12px rgba(185,28,28,.1);}
+.tier-opt input[type=radio]{position:absolute;opacity:0;width:0;height:0;}
+.tier-opt-label{font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:3px;}
+.tier-opt-amt{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--red);}
+.tier-opt-name{font-size:12px;color:var(--muted);margin-top:2px;}
+.tier-opt.selected::after{
+  content:'✓';position:absolute;top:8px;right:10px;
+  color:var(--red);font-size:12px;font-weight:700;
+}
+
+/* Payment section */
+.payment-notice{
+  background:var(--gold-pale);
+  border:1px solid rgba(217,119,6,.25);
+  padding:14px 18px;
+  margin-bottom:18px;
+  font-size:13px;color:#92400e;
+  line-height:1.6;
+}
+.payment-notice strong{display:block;margin-bottom:4px;font-size:13px;}
+
+.wix-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:16px;
+  background:var(--red);color:#fff;
+  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  border:none;cursor:pointer;
+  transition:background .2s,transform .15s;
+  margin-top:8px;
+}
+.wix-btn:hover{background:var(--red-deep);transform:translateY(-1px);}
+.wix-btn svg{flex-shrink:0;}
+
+.secure-note{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin-top:12px;font-size:11px;color:var(--muted);
+}
+.secure-note svg{color:var(--gold);}
+
+.divider{height:1px;background:var(--border);margin:28px 0;}
+
+.checkbox-field{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;}
+.checkbox-field input[type=checkbox]{width:16px;height:16px;margin-top:2px;flex-shrink:0;accent-color:var(--red);}
+.checkbox-field label{font-size:12px;color:var(--muted);line-height:1.5;cursor:pointer;}
+.checkbox-field label a{color:var(--red);text-decoration:none;}
+.checkbox-field label a:hover{text-decoration:underline;}
+
+/* ── THANK YOU PAGE ── */
+#thankyou{display:none;}
+#thankyou.show{display:block;}
+#form-page.hide{display:none;}
+
+.ty-wrap{
+  max-width:620px;margin:80px auto;padding:0 24px;text-align:center;
+}
+.ty-icon{
+  width:72px;height:72px;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;font-size:32px;
+}
+.ty-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;font-weight:700;color:var(--ink);
+  margin-bottom:12px;line-height:1.1;
+}
+.ty-title em{font-style:italic;color:var(--red);}
+.ty-body{font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:32px;}
+.ty-details{
+  background:var(--paper);border:1px solid var(--border);
+  padding:24px;text-align:left;margin-bottom:32px;
+}
+.ty-details h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;color:var(--ink);
+  margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.ty-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.ty-row:last-child{border-bottom:none;}
+.ty-row span:first-child{color:var(--muted);}
+.ty-row span:last-child{font-weight:500;color:var(--ink);}
+.ty-next{
+  font-size:13px;color:var(--muted);line-height:1.7;
+  background:#fff;border:1px solid var(--border);
+  padding:20px 24px;text-align:left;margin-bottom:24px;
+}
+.ty-next strong{color:var(--ink);display:block;margin-bottom:8px;}
+.btn-back{
+  display:inline-block;padding:13px 32px;
+  background:var(--red);color:#fff;
+  font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:background .2s;
+}
+.btn-back:hover{background:var(--red-deep);}
+
+/* ── FOOTER ── */
+.foot{
+  background:var(--red-dark);padding:28px 24px;
+  text-align:center;
+}
+.foot p{font-size:12px;color:rgba(255,255,255,.45);}
+.foot a{color:rgba(253,230,138,.7);text-decoration:none;}
+.foot a:hover{color:var(--gold-lit);}
+
+@media(max-width:900px){
+  .two-col{grid-template-columns:1fr;}
+  .kit{position:static;}
+  .field-row{grid-template-columns:1fr;}
+  .tier-selector{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .tier-selector{grid-template-columns:1fr;}
+  .hero-pills{flex-direction:column;align-items:center;}
+  .hpill+.hpill{border-left:1px solid rgba(234,179,8,.25);border-top:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <a href="asian-culture-festival.html" style="color:rgba(253,230,138,.7);text-decoration:none;margin-right:16px;">← Back to Festival Home</a>
+  Gateway to Asia · Asian Culture Festival featuring AAPI Celebration · May 16, 2026
+</div>
+
+<!-- ═══ FORM PAGE ═══ -->
+<div id="form-page">
+
+  <header class="hero">
+    <div class="hero-ring" style="width:600px;height:600px;top:-250px;right:-220px;"></div>
+    <div class="hero-ring" style="width:380px;height:380px;bottom:-150px;left:-140px;"></div>
+    <div class="hero-eyebrow">Sponsorship Registration</div>
+    <h1>Support <em>Gateway to Asia</em></h1>
+    <p class="hero-sub">Partner with Wisconsin's premier Asian cultural celebration</p>
+    <div class="hero-pills">
+      <div class="hpill"><span class="hpill-l">Date</span><span class="hpill-v">Saturday, May 16, 2026</span></div>
+      <div class="hpill"><span class="hpill-l">Hours</span><span class="hpill-v">11:00 AM – 5:30 PM</span></div>
+      <div class="hpill"><span class="hpill-l">Venue</span><span class="hpill-v">Bayshore Shopping Center</span></div>
+      <div class="hpill"><span class="hpill-l">Admission</span><span class="hpill-v">Free · All Ages</span></div>
+    </div>
+  </header>
+
+  <div class="page">
+    <div class="two-col">
+
+      <!-- ── SPONSORSHIP KIT SIDEBAR ── -->
+      <aside class="kit">
+        <div class="kit-head">Sponsorship Tiers</div>
+        <p class="kit-sub">Select a tier below to see full benefits. All sponsors receive recognition at the event and in marketing materials.</p>
+
+        <div class="tier featured active" onclick="selectTierSidebar('title')">
+          <div class="tier-badge">Featured</div>
+          <div class="tier-label">Presenting</div>
+          <div class="tier-amt">$3,000</div>
+          <div class="tier-name">Title Sponsor</div>
+          <ul class="tier-perks">
+            <li>Premier logo placement on all materials</li>
+            <li>Recognition from the main stage</li>
+            <li>Dedicated booth at the event</li>
+            <li>Visibility across all event marketing</li>
+            <li>Press release & media inclusion</li>
+            <li>VIP seating near main stage</li>
+          </ul>
+        </div>
+
+        <div class="tier" onclick="selectTierSidebar('stage')">
+          <div class="tier-label">Performance</div>
+          <div class="tier-amt">$1,500</div>
+          <div class="tier-name">Stage Sponsor</div>
+          <ul class="tier-perks">
+            <li>Stage signage & recognition</li>
+            <li>MC acknowledgement during performances</li>
+            <li>Logo on website & printed program</li>
+            <li>Social media recognition post</li>
+          </ul>
+        </div>
+
+        <div class="tier" onclick="selectTierSidebar('kids')">
+          <div class="tier-label">Family</div>
+          <div class="tier-amt">$1,000</div>
+          <div class="tier-name">Kids Corner Sponsor</div>
+          <ul class="tier-perks">
+            <li>Branding in family activity area</li>
+            <li>Recognition in event materials</li>
+            <li>Direct connection with family audiences</li>
+            <li>Social media recognition post</li>
+          </ul>
+        </div>
+
+        <div class="tier" onclick="selectTierSidebar('community')">
+          <div class="tier-label">Community</div>
+          <div class="tier-amt">$500</div>
+          <div class="tier-name">Community Sponsor</div>
+          <ul class="tier-perks">
+            <li>Logo inclusion in event materials</li>
+            <li>Event acknowledgement from stage</li>
+            <li>Community support recognition</li>
+          </ul>
+        </div>
+
+        <a class="kit-dl" href="https://wcccbusinessnetwork.org/wp-content/uploads/2026/03/sponsorship-package.pdf" target="_blank">
+          <div class="kit-dl-icon">📄</div>
+          <div class="kit-dl-text">
+            <strong>Download Sponsorship Package</strong>
+            <span>Full details · PDF · 3 pages</span>
+          </div>
+        </a>
+      </aside>
+
+      <!-- ── FORM PANEL ── -->
+      <div class="form-panel">
+        <form id="sponsorForm" novalidate>
+
+          <!-- Section 1: Organization Info -->
+          <div class="form-section-title"><span>1</span> Organization Information</div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Organization Name <span class="req">*</span></label>
+              <input type="text" id="orgName" placeholder="Your organization or business name" required>
+            </div>
+            <div class="field">
+              <label>Industry / Type <span class="req">*</span></label>
+              <select id="industry" required>
+                <option value="">Select industry...</option>
+                <option>Financial Services</option>
+                <option>Healthcare</option>
+                <option>Real Estate</option>
+                <option>Restaurant / Food & Beverage</option>
+                <option>Retail</option>
+                <option>Technology</option>
+                <option>Education</option>
+                <option>Nonprofit / Community</option>
+                <option>Legal Services</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Website</label>
+            <input type="url" id="website" placeholder="https://yourwebsite.com">
+          </div>
+
+          <!-- Section 2: Contact Info -->
+          <div class="divider"></div>
+          <div class="form-section-title"><span>2</span> Primary Contact</div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" id="firstName" placeholder="First name" required>
+            </div>
+            <div class="field">
+              <label>Last Name <span class="req">*</span></label>
+              <input type="text" id="lastName" placeholder="Last name" required>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Title / Position</label>
+              <input type="text" id="title" placeholder="e.g. Marketing Director">
+            </div>
+            <div class="field">
+              <label>Phone <span class="req">*</span></label>
+              <input type="tel" id="phone" placeholder="(414) 000-0000" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="your@email.com" required>
+          </div>
+
+          <!-- Section 3: Sponsorship Selection -->
+          <div class="divider"></div>
+          <div class="form-section-title"><span>3</span> Select Sponsorship Tier</div>
+
+          <div class="tier-selector" id="tierSelector">
+            <label class="tier-opt selected">
+              <input type="radio" name="tier" value="Title Sponsor" data-amount="3000" checked>
+              <div class="tier-opt-label">Presenting</div>
+              <div class="tier-opt-amt">$3,000</div>
+              <div class="tier-opt-name">Title Sponsor</div>
+            </label>
+            <label class="tier-opt">
+              <input type="radio" name="tier" value="Stage Sponsor" data-amount="1500">
+              <div class="tier-opt-label">Performance</div>
+              <div class="tier-opt-amt">$1,500</div>
+              <div class="tier-opt-name">Stage Sponsor</div>
+            </label>
+            <label class="tier-opt">
+              <input type="radio" name="tier" value="Kids Corner Sponsor" data-amount="1000">
+              <div class="tier-opt-label">Family</div>
+              <div class="tier-opt-amt">$1,000</div>
+              <div class="tier-opt-name">Kids Corner Sponsor</div>
+            </label>
+            <label class="tier-opt">
+              <input type="radio" name="tier" value="Community Sponsor" data-amount="500">
+              <div class="tier-opt-label">Community</div>
+              <div class="tier-opt-amt">$500</div>
+              <div class="tier-opt-name">Community Sponsor</div>
+            </label>
+          </div>
+
+          <div class="field" style="margin-top:14px;">
+            <label>Logo File (for marketing materials)</label>
+            <input type="file" id="logoFile" accept=".png,.jpg,.jpeg,.svg,.eps,.ai" style="background:#fff;padding:10px 14px;">
+          </div>
+
+          <div class="field">
+            <label>Additional Notes or Requests</label>
+            <textarea id="notes" placeholder="Any specific requests, questions, or booth preferences..."></textarea>
+          </div>
+
+          <!-- Section 4: Payment -->
+          <div class="divider"></div>
+          <div class="form-section-title"><span>4</span> Payment</div>
+
+          <div class="payment-notice">
+            <strong>Secure Payment via Wix Payments</strong>
+            After submitting this form, you will be redirected to our secure payment page to complete your sponsorship by credit or debit card. Your sponsorship is not confirmed until payment is received.
+            <br><br>
+            <strong>Prefer to pay by check?</strong>
+            Make check payable to: <strong>Wisconsin Chinese Chamber of Commerce</strong><br>
+            Mail to: 6027 W Vliet Street, Wauwatosa, WI 53213
+          </div>
+
+          <div class="field">
+            <label>Billing Address <span class="req">*</span></label>
+            <input type="text" id="address" placeholder="Street address" required style="margin-bottom:8px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+              <input type="text" id="city" placeholder="City" required style="padding:12px 14px;border:1px solid var(--border);background:var(--cream);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;">
+              <input type="text" id="state" placeholder="State" required style="padding:12px 14px;border:1px solid var(--border);background:var(--cream);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;">
+              <input type="text" id="zip" placeholder="ZIP" required style="padding:12px 14px;border:1px solid var(--border);background:var(--cream);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;">
+            </div>
+          </div>
+
+          <div class="checkbox-field">
+            <input type="checkbox" id="terms" required>
+            <label for="terms">I agree to the <a href="sponsorship-terms.html" target="_blank">sponsorship terms and conditions</a> and authorize WCCC to use my organization's name and logo in event marketing materials.</label>
+          </div>
+
+          <div class="checkbox-field">
+            <input type="checkbox" id="newsletter">
+            <label for="newsletter">Sign me up for WCCC newsletters and future event announcements.</label>
+          </div>
+
+          <button type="submit" class="wix-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Proceed to Secure Payment
+          </button>
+
+          <div class="secure-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secured by Wix Payments · SSL Encrypted
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- end #form-page -->
+
+<!-- ═══ THANK YOU PAGE ═══ -->
+<div id="thankyou">
+  <div class="ty-wrap">
+    <div class="ty-icon">✓</div>
+    <h1 class="ty-title">Thank You for<br><em>Your Support!</em></h1>
+    <p class="ty-body">Your sponsorship submission has been received and saved. You will be automatically redirected to complete your payment in 3 seconds, or click the button below.</p>
+
+    <div style="text-align:center;margin-bottom:28px;">
+      <a href="https://www.wisccc.org/donate" style="background:#B91C1C;color:#fff;display:inline-block;padding:16px 40px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;cursor:pointer;">
+        Complete Payment &rarr;
+      </a>
+    </div>
+    <div class="ty-details">
+      <h3>Submission Summary</h3>
+      <div class="ty-row"><span>Organization</span><span id="ty-org">—</span></div>
+      <div class="ty-row"><span>Contact</span><span id="ty-contact">—</span></div>
+      <div class="ty-row"><span>Email</span><span id="ty-email">—</span></div>
+      <div class="ty-row"><span>Sponsorship Tier</span><span id="ty-tier">—</span></div>
+      <div class="ty-row"><span>Amount</span><span id="ty-amount">—</span></div>
+    </div>
+
+    <div class="ty-next">
+      <strong>What happens next?</strong>
+      You will be redirected to the Wix payment page to complete your credit card payment. Once payment is confirmed, a WCCC team member will contact you within 2 business days to finalize your sponsorship details, collect your logo, and confirm your booth or visibility placement.
+    </div>
+
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Questions? Contact us at <a href="/cdn-cgi/l/email-protection#3851565e57784f514b5b5b5b16574a5f" style="color:var(--red);"><span class="__cf_email__" data-cfemail="82ebece4edc2f5ebf1e1e1e1acedf0e5">[email&#160;protected]</span></a></p>
+
+    <button class="btn-back" onclick="goBack()">← Submit Another Sponsorship</button>
+  </div>
+
+  <footer class="foot">
+    <p>Wisconsin Chinese Chamber of Commerce (WCCC) · <a href="/cdn-cgi/l/email-protection#7e171018113e09170d1d1d1d50110c19"><span class="__cf_email__" data-cfemail="ed84838b82ad9a849e8e8e8ec3829f8a">[email&#160;protected]</span></a> · <a href="https://wcccbusinessnetwork.org/asian-culture-festival.html" target="_blank">Asian Culture Festival</a></p>
+    <p style="margin-top:6px;">© 2026 Wisconsin Chinese Chamber of Commerce · All Rights Reserved</p>
+  </footer>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Tier selection sync (sidebar ↔ form) ──
+const tierAmounts = {
+  'title':     { value:'Title Sponsor',       amount:3000 },
+  'stage':     { value:'Stage Sponsor',        amount:1500 },
+  'kids':      { value:'Kids Corner Sponsor',  amount:1000 },
+  'community': { value:'Community Sponsor',    amount:500  },
+};
+
+function selectTierSidebar(key) {
+  document.querySelectorAll('.kit .tier').forEach(t => t.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const radio = document.querySelector(`input[type=radio][data-amount="${tierAmounts[key].amount}"]`);
+  if (radio) {
+    radio.checked = true;
+    document.querySelectorAll('.tier-opt').forEach(o => o.classList.remove('selected'));
+    radio.closest('.tier-opt').classList.add('selected');
+  }
+}
+
+// Tier option click in form
+document.querySelectorAll('.tier-opt').forEach(opt => {
+  opt.addEventListener('click', function() {
+    document.querySelectorAll('.tier-opt').forEach(o => o.classList.remove('selected'));
+    this.classList.add('selected');
+    const amount = this.querySelector('input[type=radio]').dataset.amount;
+    // sync sidebar
+    const sidebarTiers = document.querySelectorAll('.kit .tier');
+    sidebarTiers.forEach(t => t.classList.remove('active'));
+    const map = { '3000':0, '1500':1, '1000':2, '500':3 };
+    if (sidebarTiers[map[amount]]) sidebarTiers[map[amount]].classList.add('active');
+  });
+});
+
+// ── Google Form field mapping ──
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdY6gmScO_Yr33919sHI5A-qoRrDEK0pvC1KXfiB4GATZ5CGg/formResponse';
+const FIELDS = {
+  orgName:    'entry.703353986',
+  industry:   'entry.529970530',
+  website:    'entry.21826001',
+  firstName:  'entry.1654532717',
+  lastName:   'entry.1159870394',
+  title:      'entry.1362820846',
+  phone:      'entry.16318437',
+  email:      'entry.1553923035',
+  tier:       'entry.1223318577',
+  address:    'entry.301047375',
+  city:       'entry.905076446',
+  state:      'entry.1701789603',
+  zip:        'entry.821415156',
+  notes:      'entry.113801083',
+  newsletter: 'entry.1424099553',
+};
+
+// ── Wix payment link ──
+const WIX_URLS = {
+  'Title Sponsor':         'https://www.wisccc.org/donate',
+  'Stage Sponsor':         'https://www.wisccc.org/donate',
+  'Kids Corner Sponsor':   'https://www.wisccc.org/donate',
+  'Community Sponsor':     'https://www.wisccc.org/donate',
+};
+
+// ── Form submission ──
+document.getElementById('sponsorForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // Basic validation
+  const required = ['orgName','industry','firstName','lastName','phone','email','address'];
+  let valid = true;
+  let firstError = null;
+  required.forEach(id => {
+    const el = document.getElementById(id);
+    const errId = id + '-err';
+    let err = document.getElementById(errId);
+    if (!err) {
+      err = document.createElement('div');
+      err.id = errId;
+      err.style.cssText = 'color:#B91C1C;font-size:11px;margin-top:4px;';
+      el.parentNode.appendChild(err);
+    }
+    if (!el.value.trim()) {
+      el.style.borderColor = '#B91C1C';
+      err.textContent = 'This field is required.';
+      valid = false;
+      if (!firstError) firstError = el;
+    } else {
+      el.style.borderColor = '';
+      err.textContent = '';
+    }
+  });
+  if (!document.getElementById('terms').checked) {
+    let err = document.getElementById('terms-err');
+    if (!err) {
+      err = document.createElement('div');
+      err.id = 'terms-err';
+      err.style.cssText = 'color:#B91C1C;font-size:11px;margin-top:4px;';
+      document.getElementById('terms').parentNode.appendChild(err);
+    }
+    err.textContent = 'You must agree to the terms to proceed.';
+    valid = false;
+    if (!firstError) firstError = document.getElementById('terms');
+  } else {
+    const err = document.getElementById('terms-err');
+    if (err) err.textContent = '';
+  }
+  if (!valid) {
+    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    firstError.focus();
+    return;
+  }
+
+  // Get selected tier
+  const selectedTier = document.querySelector('input[name="tier"]:checked');
+  const tierName = selectedTier ? selectedTier.value : 'Title Sponsor';
+  const tierAmt  = selectedTier ? '$' + Number(selectedTier.dataset.amount).toLocaleString() : '$3,000';
+
+  // ── Silently post to Google Sheets via Google Form ──
+  const fd = new FormData();
+  fd.append(FIELDS.orgName,    document.getElementById('orgName').value);
+  fd.append(FIELDS.industry,   document.getElementById('industry').value);
+  fd.append(FIELDS.website,    document.getElementById('website').value);
+  fd.append(FIELDS.firstName,  document.getElementById('firstName').value);
+  fd.append(FIELDS.lastName,   document.getElementById('lastName').value);
+  fd.append(FIELDS.title,      document.getElementById('title').value);
+  fd.append(FIELDS.phone,      document.getElementById('phone').value);
+  fd.append(FIELDS.email,      document.getElementById('email').value);
+  fd.append(FIELDS.tier,       tierName);
+  fd.append(FIELDS.address,    document.getElementById('address').value);
+  fd.append(FIELDS.city,       document.getElementById('city').value);
+  fd.append(FIELDS.state,      document.getElementById('state').value);
+  fd.append(FIELDS.zip,        document.getElementById('zip').value);
+  fd.append(FIELDS.notes,      document.getElementById('notes').value);
+  fd.append(FIELDS.newsletter, document.getElementById('newsletter').checked ? 'Yes' : 'No');
+
+  fetch(GOOGLE_FORM_URL, { method:'POST', mode:'no-cors', body:fd }).catch(()=>{});
+
+  // ── Go straight to payment ──
+  window.location.href = 'https://www.wisccc.org/donate';
+});
+
+function goBack() {
+  document.getElementById('thankyou').classList.remove('show');
+  document.getElementById('form-page').classList.remove('hide');
+  document.getElementById('sponsorForm').reset();
+  document.querySelectorAll('.tier-opt').forEach((o,i) => o.classList.toggle('selected', i===0));
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
