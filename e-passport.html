@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Asia Discovery Passport — Gateway to Asia 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#B91C1C;--red-deep:#7F1D1D;--red-dark:#3d0000;
+  --gold:#D97706;--gold-lit:#F59E0B;--gold-pale:#FEF3C7;
+  --cream:#FFFBF2;--ink:#1C0A00;--muted:#7c6a58;
+  --border:rgba(28,10,0,0.1);--green:#15803d;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;max-width:480px;margin:0 auto;}
+
+/* SCAN OVERLAY */
+#scanOverlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;flex-direction:column;padding:32px;text-align:center;}
+#scanOverlay.show{display:flex;}
+.scan-icon{font-size:80px;margin-bottom:16px;animation:scanPop .4s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes scanPop{0%{transform:scale(0);opacity:0;}100%{transform:scale(1);opacity:1;}}
+.scan-culture{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lit);margin-bottom:4px;}
+.scan-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:#fff;margin-bottom:6px;}
+.scan-title em{font-style:italic;color:var(--gold-lit);}
+.scan-station{font-family:'Cormorant Garamond',serif;font-size:20px;color:rgba(255,255,255,0.8);margin-bottom:8px;}
+.scan-progress{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:28px;}
+.scan-continue{padding:14px 36px;background:var(--gold);color:var(--ink);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;width:100%;max-width:280px;}
+.scan-already{font-size:12px;color:rgba(255,255,255,0.4);margin-top:12px;}
+
+/* COVER */
+#cover{min-height:100vh;background:linear-gradient(155deg,var(--red-dark) 0%,var(--red-deep) 55%,#8B1A1A 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;position:relative;overflow:hidden;}
+#cover::before{content:'亚洲探索护照';font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:700;color:rgba(255,255,255,0.025);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
+.cover-ring{position:absolute;border-radius:50%;border:1px solid rgba(234,179,8,0.1);pointer-events:none;}
+.cover-badge{display:inline-block;border:1px solid rgba(234,179,8,0.3);background:rgba(234,179,8,0.08);color:var(--gold-lit);padding:5px 16px;font-size:9px;letter-spacing:.38em;text-transform:uppercase;margin-bottom:20px;}
+.cover-hanzi{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--gold-lit);letter-spacing:8px;margin-bottom:12px;animation:glow 3s ease-in-out infinite;}
+@keyframes glow{0%,100%{text-shadow:0 0 20px rgba(234,179,8,0.2);}50%{text-shadow:0 0 40px rgba(234,179,8,0.6);}}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:#fff;line-height:1;margin-bottom:8px;}
+.cover-title em{font-style:italic;color:var(--gold-lit);}
+.cover-sub{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(255,255,255,0.65);margin-bottom:28px;}
+.cover-info{background:rgba(0,0,0,0.25);border:1px solid rgba(234,179,8,0.2);padding:16px 20px;margin-bottom:24px;width:100%;}
+.cover-info-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:13px;color:rgba(255,255,255,0.8);}
+.cover-info-row:last-child{border-bottom:none;}
+.cover-info-row span:first-child{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-lit);width:70px;flex-shrink:0;}
+.name-wrap{width:100%;margin-bottom:16px;}
+.name-wrap label{display:block;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lit);margin-bottom:8px;}
+.name-input{width:100%;padding:14px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(234,179,8,0.3);color:#fff;font-family:'DM Sans',sans-serif;font-size:16px;outline:none;text-align:center;transition:border-color .2s;}
+.name-input::placeholder{color:rgba(255,255,255,0.3);}
+.name-input:focus{border-color:var(--gold-lit);}
+.start-btn{width:100%;padding:16px;background:var(--gold);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:10px;transition:background .2s;}
+.start-btn:hover{background:var(--gold-lit);}
+.start-btn:disabled{opacity:.5;cursor:not-allowed;}
+.cover-hint{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.5;}
+
+/* PASSPORT */
+#passport{display:none;}
+.pheader{background:linear-gradient(135deg,var(--red-dark),var(--red-deep));padding:20px 20px 14px;position:sticky;top:0;z-index:100;}
+.pheader-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.pholder{font-size:11px;color:rgba(255,255,255,0.6);}
+.pholder strong{display:block;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#fff;}
+.plogo{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;color:var(--gold-lit);text-align:right;line-height:1.3;}
+.pbar-wrap{background:rgba(255,255,255,0.1);height:6px;border-radius:3px;overflow:hidden;}
+.pbar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-lit));border-radius:3px;transition:width .5s;width:0%;}
+.pbar-text{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,0.55);margin-top:5px;}
+
+.swrap{padding:20px 16px 100px;}
+.swrap-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.swrap-sub{font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.5;}
+.qr-hint{background:var(--gold-pale);border:1px solid rgba(217,119,6,0.25);border-left:3px solid var(--gold);padding:10px 14px;margin-bottom:20px;font-size:12px;color:#92400e;line-height:1.5;}
+.qr-hint strong{display:block;margin-bottom:2px;}
+.sec-hdr{font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid rgba(185,28,28,0.15);}
+
+.scard{background:#fff;border:1px solid var(--border);border-left:4px solid var(--border);margin-bottom:10px;padding:16px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;transition:all .2s;}
+.scard.stamped{border-left-color:var(--green);background:#f0fdf4;}
+.semoji{font-size:26px;flex-shrink:0;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--cream);border-radius:50%;transition:background .2s;}
+.scard.stamped .semoji{background:#dcfce7;}
+.sinfo{flex:1;}
+.sculture{font-size:9px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+.scard.stamped .sculture{color:var(--green);}
+.sname{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:2px;}
+.sdesc{font-size:12px;color:var(--muted);line-height:1.4;}
+.sqr-label{font-size:9px;color:rgba(28,10,0,0.3);letter-spacing:.1em;text-transform:uppercase;margin-top:3px;}
+.sstamp{flex-shrink:0;width:44px;height:44px;border-radius:50%;border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .3s;color:transparent;}
+.scard.stamped .sstamp{border:2px solid var(--green);background:#dcfce7;color:var(--green);font-size:22px;animation:stampIn .3s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes stampIn{0%{transform:scale(0) rotate(-20deg);opacity:0;}100%{transform:scale(1) rotate(0deg);opacity:1;}}
+
+/* COMPLETE */
+#complete{display:none;padding:32px 20px;text-align:center;min-height:100vh;}
+#complete.show{display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.cicon{font-size:72px;margin-bottom:16px;animation:bounce .6s ease-in-out;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.ctitle{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--red);line-height:1.1;margin-bottom:10px;}
+.ctitle em{font-style:italic;color:var(--gold);}
+.csub{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:24px;max-width:320px;}
+.ccard{width:100%;background:linear-gradient(135deg,var(--red-dark),var(--red-deep));padding:24px;margin-bottom:20px;}
+.ccard-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#fff;margin-bottom:4px;}
+.ccard-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lit);margin-bottom:16px;}
+.cdots{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:16px;}
+.cdot{width:32px;height:32px;border-radius:50%;background:rgba(234,179,8,0.3);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.cfoot{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:.1em;text-transform:uppercase;}
+.prizes{width:100%;background:var(--gold-pale);border:1px solid rgba(217,119,6,0.25);padding:20px;margin-bottom:20px;text-align:left;}
+.prizes-ttl{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px;}
+.prize{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(217,119,6,0.15);font-size:13px;color:var(--ink);}
+.prize:last-child{border-bottom:none;}
+.prize::before{content:'🎁';font-size:14px;}
+.claim-btn{width:100%;padding:16px;background:var(--red);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:10px;transition:background .2s;}
+.claim-btn:hover{background:var(--red-deep);}
+.restart-btn{font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;padding:8px;}
+
+/* ADMIN/QR PAGE */
+#adminPage{display:none;padding:20px;}
+.ahdr{background:var(--red-dark);padding:20px;margin:-20px -20px 20px;text-align:center;}
+.ahdr h1{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--gold-lit);}
+.ahdr p{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.aintro{background:var(--gold-pale);border:1px solid rgba(217,119,6,0.25);padding:14px;margin-bottom:16px;font-size:12px;color:#92400e;line-height:1.6;}
+.aintro strong{display:block;margin-bottom:4px;}
+.aurl-wrap{margin-bottom:16px;}
+.aurl-wrap label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;}
+.aurl-input{width:100%;padding:10px 12px;border:1px solid var(--border);font-size:13px;font-family:'DM Sans',sans-serif;outline:none;}
+.aurl-hint{font-size:11px;color:var(--muted);margin-top:4px;}
+.print-btn{width:100%;padding:14px;background:var(--red);color:#fff;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:20px;}
+.qr-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.qr-item{background:#fff;border:1px solid var(--border);padding:16px;text-align:center;}
+.qr-culture{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:8px;margin-bottom:2px;}
+.qr-name{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.qr-url-text{font-size:9px;color:var(--muted);word-break:break-all;line-height:1.3;}
+
+/* Toast */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--red-dark);border:1px solid rgba(234,179,8,0.3);padding:10px 20px;display:flex;align-items:center;gap:10px;font-size:12px;color:#fff;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:50;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;}
+.tdot{width:8px;height:8px;background:var(--gold-lit);border-radius:50%;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
+
+/* Confetti */
+.cp{position:fixed;width:8px;height:8px;border-radius:2px;animation:cfall 1.5s ease-in forwards;pointer-events:none;z-index:999;}
+@keyframes cfall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
+
+@media print{
+  #adminPage{display:block !important;}
+  #cover,#passport,#complete,#scanOverlay,.print-btn,.aurl-wrap,.aintro{display:none !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- SCAN OVERLAY -->
+<div id="scanOverlay">
+  <div class="scan-icon" id="scanIcon">✦</div>
+  <div class="scan-culture" id="scanCulture"></div>
+  <div class="scan-title">Station <em>Stamped!</em></div>
+  <div class="scan-station" id="scanStation"></div>
+  <div class="scan-progress" id="scanProgress"></div>
+  <button class="scan-continue" onclick="closeScan()">Continue Exploring →</button>
+  <div class="scan-already" id="scanAlready"></div>
+</div>
+
+<!-- COVER -->
+<div id="cover">
+  <div class="cover-ring" style="width:500px;height:500px;top:-200px;right:-220px;"></div>
+  <div class="cover-ring" style="width:320px;height:320px;bottom:-120px;left:-130px;"></div>
+  <div class="cover-badge">Gateway to Asia · May 16, 2026</div>
+  <div class="cover-hanzi">亚洲探索护照</div>
+  <h1 class="cover-title">Asia Discovery<br><em>Passport</em></h1>
+  <p class="cover-sub">Scan · Stamp · Win</p>
+  <div class="cover-info">
+    <div class="cover-info-row"><span>Date</span>Saturday, May 16, 2026</div>
+    <div class="cover-info-row"><span>Hours</span>11:00 AM – 5:30 PM</div>
+    <div class="cover-info-row"><span>Venue</span>The Yard at Bayshore Shopping Center</div>
+    <div class="cover-info-row"><span>How to</span>Scan QR codes at each station</div>
+  </div>
+  <div class="name-wrap">
+    <label>Your Name</label>
+    <input class="name-input" id="nameInput" type="text" placeholder="Enter your name to begin" maxlength="40" autocomplete="off">
+  </div>
+  <button class="start-btn" id="startBtn" onclick="startPassport()" disabled>Open My Passport →</button>
+  <p class="cover-hint">Scan a station QR code at any time to auto-stamp your passport</p>
+</div>
+
+<!-- PASSPORT -->
+<div id="passport">
+  <div class="pheader">
+    <div class="pheader-top">
+      <div class="pholder">Passport Holder<strong id="holderName">—</strong></div>
+      <div class="plogo">Gateway<br>to Asia</div>
+    </div>
+    <div class="pbar-wrap"><div class="pbar" id="pbar"></div></div>
+    <div class="pbar-text"><span id="pbarLabel">0 of 10 stations visited</span><span id="pbarPct">0%</span></div>
+  </div>
+  <div class="swrap">
+    <div class="swrap-title">Your Discovery Passport</div>
+    <p class="swrap-sub">Scan the QR code at each station to collect your stamp.</p>
+    <div class="qr-hint"><strong>📱 How it works</strong>Point your camera at the QR code sign at each station. Your stamp is collected automatically!</div>
+
+    <div class="sec-hdr">Cultural Activities</div>
+    <div class="scard" id="s0"><div class="semoji">🖌️</div><div class="sinfo"><div class="sculture">China</div><div class="sname">Chinese Calligraphy</div><div class="sdesc">Write your name in beautiful Chinese brushstroke characters</div><div class="sqr-label">Scan QR · Station 1</div></div><div class="sstamp">✓</div></div>
+    <div class="scard" id="s1"><div class="semoji">🏮</div><div class="sinfo"><div class="sculture">China</div><div class="sname">Lantern Coloring</div><div class="sdesc">Decorate a traditional Chinese lantern to take home</div><div class="sqr-label">Scan QR · Station 2</div></div><div class="sstamp">✓</div></div>
+    <div class="scard" id="s2"><div class="semoji">🦢</div><div class="sinfo"><div class="sculture">Japan</div><div class="sname">Origami Folding</div><div class="sdesc">Fold a paper crane with traditional Japanese origami</div><div class="sqr-label">Scan QR · Station 3</div></div><div class="sstamp">✓</div></div>
+    <div class="scard" id="s3"><div class="semoji">🎋</div><div class="sinfo"><div class="sculture">Philippines</div><div class="sname">Parol Lantern Craft</div><div class="sdesc">Create a Filipino star lantern — symbol of hope</div><div class="sqr-label">Scan QR · Station 4</div></div><div class="sstamp">✓</div></div>
+    <div class="scard" id="s4"><div class="semoji">🌺</div><div class="sinfo"><div class="sculture">India</div><div class="sname">Henna Art</div><div class="sdesc">Get a beautiful henna design drawn on your hand</div><div class="sqr-label">Scan QR · Station 5</div></div><div class="sstamp">✓</div></div>
+
+    <div class="sec-hdr">Cultural Experiences</div>
+    <div class="scard" id="s5"><div class="semoji">🥋</div><div class="sinfo"><div class="sculture">Japan</div><div class="sname">Karate Demo</div><div class="sdesc">Watch a traditional kata and try a move</div><div class="sqr-label">Scan QR · Station 6</div></div><div class="sstamp">✓</div></div>
+    <div class="scard" id="s6"><div class="semoji">🎵</div><div class="sinfo"><div class="sculture">Hmong</div><div class="sname">Pov Pob Ball Toss</div><div class="sdesc">Try the traditional Hmong ball toss</div><div class="sqr-label">Scan QR · Station 7</div></div><div class="sstamp">✓</div></div>
+    <div class="scard" id="s7"><div class="semoji">💃</div><div class="sinfo"><div class="sculture">India</div><div class="sname">Bollywood Mini-Class</div><div class="sdesc">Join a fun family Bollywood dance moment on stage</div><div class="sqr-label">Scan QR · Station 8</div></div><div class="sstamp">✓</div></div>
+    <div class="scard" id="s8"><div class="semoji">🥁</div><div class="sinfo"><div class="sculture">Japan</div><div class="sname">Taiko Call-and-Response</div><div class="sdesc">Beat the drum in a Taiko rhythm with performers</div><div class="sqr-label">Scan QR · Station 9</div></div><div class="sstamp">✓</div></div>
+    <div class="scard" id="s9"><div class="semoji">🎎</div><div class="sinfo"><div class="sculture">All Cultures</div><div class="sname">Photo & Costume Station</div><div class="sdesc">Dress up in traditional Asian attire and take a photo!</div><div class="sqr-label">Scan QR · Station 10</div></div><div class="sstamp">✓</div></div>
+  </div>
+</div>
+
+<!-- COMPLETE -->
+<div id="complete">
+  <div class="cicon">🎉</div>
+  <h2 class="ctitle">Passport<br><em>Complete!</em></h2>
+  <p class="csub">Amazing! You've explored all 10 cultural stations. Head to the Information Booth to claim your prize!</p>
+  <div class="ccard">
+    <div class="ccard-label">Asia Discovery Passport · Completed</div>
+    <div class="ccard-name" id="completeName">—</div>
+    <div class="cdots" id="completeDots"></div>
+    <div class="cfoot">Gateway to Asia · May 16, 2026 · Bayshore</div>
+  </div>
+  <div class="prizes">
+    <div class="prizes-ttl">Your Prize Options</div>
+    <div class="prize">Festival sticker set</div>
+    <div class="prize">Mini lantern</div>
+    <div class="prize">Cultural bookmark</div>
+    <div class="prize">Asian snack treat</div>
+    <div class="prize">Festival wristband</div>
+  </div>
+  <button class="claim-btn" onclick="claimPrize()">🎁 Show This Screen to Claim Your Prize</button>
+  <button class="restart-btn" onclick="restartPassport()">Start over</button>
+</div>
+
+<!-- ADMIN/QR PAGE -->
+<div id="adminPage">
+  <div class="ahdr"><h1>Station QR Codes</h1><p>Asia Discovery Passport · Gateway to Asia 2026 · Print &amp; place at each station</p></div>
+  <div class="aintro"><strong>📋 Instructions for Staff</strong>Print this page, cut out each QR code card, and place one at each cultural station. When attendees scan with their phone camera, their passport is automatically stamped. Update the URL below before printing.</div>
+  <div class="aurl-wrap">
+    <label>Passport Page URL</label>
+    <input class="aurl-input" id="baseUrl" value="https://wcccbusinessnetwork.org/e-passport.html" oninput="buildQRs()">
+    <div class="aurl-hint">Change this to your actual deployed URL before printing</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ Print All QR Codes</button>
+  <div class="qr-grid" id="qrGrid"></div>
+</div>
+
+<div class="toast" id="toast"><div class="tdot"></div><span id="toastMsg">Stamped!</span></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const TOTAL = 10;
+const STATIONS = [
+  {id:'calligraphy', emoji:'🖌️', culture:'China',        name:'Chinese Calligraphy',     index:0},
+  {id:'lantern',     emoji:'🏮', culture:'China',        name:'Lantern Coloring',        index:1},
+  {id:'origami',     emoji:'🦢', culture:'Japan',        name:'Origami Folding',         index:2},
+  {id:'parol',       emoji:'🎋', culture:'Philippines',  name:'Parol Lantern Craft',     index:3},
+  {id:'henna',       emoji:'🌺', culture:'India',        name:'Henna Art',               index:4},
+  {id:'karate',      emoji:'🥋', culture:'Japan',        name:'Karate Demo',             index:5},
+  {id:'povpob',      emoji:'🎵', culture:'Hmong',        name:'Pov Pob Ball Toss',       index:6},
+  {id:'bollywood',   emoji:'💃', culture:'India',        name:'Bollywood Mini-Class',    index:7},
+  {id:'taiko',       emoji:'🥁', culture:'Japan',        name:'Taiko Call-and-Response', index:8},
+  {id:'costume',     emoji:'🎎', culture:'All Cultures', name:'Photo & Costume Station', index:9},
+];
+
+let stamped = new Set();
+let holderName = '';
+
+function loadState() {
+  try {
+    const d = JSON.parse(localStorage.getItem('gta_v3') || 'null');
+    if (d && d.name) { holderName = d.name; stamped = new Set(d.stamped || []); return true; }
+  } catch(e) {}
+  return false;
+}
+function saveState() {
+  try { localStorage.setItem('gta_v3', JSON.stringify({name:holderName, stamped:[...stamped]})); } catch(e) {}
+}
+
+document.getElementById('nameInput').addEventListener('input', function() {
+  document.getElementById('startBtn').disabled = this.value.trim().length < 2;
+});
+document.getElementById('nameInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter' && this.value.trim().length >= 2) startPassport();
+});
+
+function startPassport() {
+  const n = document.getElementById('nameInput').value.trim();
+  if (!n) return;
+  holderName = n; saveState();
+  showPassport();
+  const pending = sessionStorage.getItem('gta_pending');
+  if (pending) { sessionStorage.removeItem('gta_pending'); setTimeout(() => doStamp(pending), 400); }
+}
+
+function showPassport() {
+  document.getElementById('cover').style.display = 'none';
+  document.getElementById('passport').style.display = 'block';
+  document.getElementById('holderName').textContent = holderName;
+  stamped.forEach(i => { const c = document.getElementById('s'+i); if(c) c.classList.add('stamped'); });
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = Math.round(stamped.size / TOTAL * 100);
+  document.getElementById('pbar').style.width = pct + '%';
+  document.getElementById('pbarLabel').textContent = stamped.size + ' of ' + TOTAL + ' stations visited';
+  document.getElementById('pbarPct').textContent = pct + '%';
+}
+
+function doStamp(stationId) {
+  const s = STATIONS.find(x => x.id === stationId);
+  if (!s) return;
+  const already = stamped.has(s.index);
+  if (!already) {
+    stamped.add(s.index);
+    const card = document.getElementById('s' + s.index);
+    if (card) card.classList.add('stamped');
+    saveState(); updateProgress();
+  }
+  // Show overlay
+  document.getElementById('scanIcon').textContent = s.emoji;
+  document.getElementById('scanCulture').textContent = s.culture;
+  document.getElementById('scanStation').textContent = s.name;
+  document.getElementById('scanProgress').textContent = already
+    ? 'You already visited this station!'
+    : stamped.size + ' of ' + TOTAL + ' stamped · ' + (TOTAL - stamped.size) + ' to go';
+  document.getElementById('scanAlready').textContent = already ? 'Already stamped — keep exploring!' : '';
+  document.getElementById('scanOverlay').classList.add('show');
+}
+
+function closeScan() {
+  document.getElementById('scanOverlay').classList.remove('show');
+  if (stamped.size === TOTAL) setTimeout(showComplete, 400);
+}
+
+function showComplete() {
+  document.getElementById('passport').style.display = 'none';
+  document.getElementById('complete').style.display = 'flex';
+  document.getElementById('completeName').textContent = holderName;
+  const dots = document.getElementById('completeDots');
+  dots.innerHTML = '';
+  STATIONS.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'cdot'; d.textContent = s.emoji;
+    dots.appendChild(d);
+  });
+  confetti();
+}
+
+function claimPrize() { alert('🎁 Show this screen at the Information Booth!\n\nThank you for exploring Gateway to Asia, ' + holderName + '! 🎉'); }
+
+function restartPassport() {
+  if (!confirm('Start over? Stamps will be cleared.')) return;
+  stamped.clear(); holderName = '';
+  localStorage.removeItem('gta_v3');
+  ['complete','passport'].forEach(id => document.getElementById(id).style.display = 'none');
+  document.getElementById('cover').style.display = 'flex';
+  document.getElementById('nameInput').value = '';
+  document.getElementById('startBtn').disabled = true;
+}
+
+// QR CODE GENERATION
+function buildQRs() {
+  const base = document.getElementById('baseUrl').value.trim();
+  const grid = document.getElementById('qrGrid');
+  grid.innerHTML = '';
+  STATIONS.forEach((s, i) => {
+    const url = base + '?stamp=' + s.id;
+    const item = document.createElement('div');
+    item.className = 'qr-item';
+    item.innerHTML = `<div id="qrc${i}"></div><div class="qr-culture">${s.culture}</div><div class="qr-name">${s.emoji} ${s.name}</div><div class="qr-url-text">${url}</div>`;
+    grid.appendChild(item);
+    try {
+      new QRCode(document.getElementById('qrc'+i), {text:url, width:130, height:130, colorDark:'#1C0A00', colorLight:'#FFFBF2', correctLevel:QRCode.CorrectLevel.M});
+    } catch(e) {}
+  });
+}
+
+function confetti() {
+  const colors = ['#B91C1C','#D97706','#F59E0B','#FFFBF2','#7F1D1D','#FDE68A'];
+  for (let i=0;i<60;i++) setTimeout(() => {
+    const el = document.createElement('div');
+    el.className = 'cp';
+    el.style.cssText = `left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${1+Math.random()}s;animation-delay:${Math.random()*.5}s`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2500);
+  }, i*30);
+}
+
+window.addEventListener('load', () => {
+  const params = new URLSearchParams(location.search);
+  const stampId = params.get('stamp');
+  const admin   = params.get('admin');
+
+  if (admin === 'qr') {
+    document.getElementById('cover').style.display = 'none';
+    document.getElementById('adminPage').style.display = 'block';
+    setTimeout(buildQRs, 600);
+    return;
+  }
+
+  const hasSaved = loadState();
+
+  if (stampId) {
+    if (!hasSaved || !holderName) {
+      sessionStorage.setItem('gta_pending', stampId);
+      const hint = document.querySelector('.cover-hint');
+      const s = STATIONS.find(x => x.id === stampId);
+      if (hint && s) hint.textContent = '📍 Enter your name to stamp: ' + s.name;
+    } else {
+      showPassport();
+      setTimeout(() => doStamp(stampId), 400);
+    }
+  } else if (hasSaved && holderName) {
+    stamped.size === TOTAL ? showComplete() : showPassport();
+  }
+});
+</script>
+</body>
+</html>
