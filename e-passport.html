@@ -281,6 +281,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
     <div class="aurl-hint">Update to your actual deployed URL before printing</div>
   </div>
   <button class="print-btn" onclick="window.print()">🖨️ Print All QR Codes</button>
+
+  <div style="background:#fff;border:2px solid var(--red);padding:20px;text-align:center;margin-bottom:20px;">
+    <div style="font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:8px;">Main Passport Entry</div>
+    <div id="qrMain"></div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--ink);margin-top:10px;">📱 Open the Passport</div>
+    <div style="font-size:11px;color:var(--muted);margin-top:4px;">Place at festival entrance · Attendees scan to start</div>
+    <div class="qr-url-text" id="qrMainUrl" style="margin-top:6px;"></div>
+  </div>
+
   <div class="qr-grid" id="qrGrid"></div>
 </div>
 
@@ -530,6 +539,18 @@ window.restartPassport = function() {
 // ── QR CODES ──
 window.buildQRs = function() {
   const base = document.getElementById('baseUrl').value.trim();
+
+  // Master entry QR
+  const mainEl = document.getElementById('qrMain');
+  const mainUrl = document.getElementById('qrMainUrl');
+  if (mainEl) {
+    mainEl.innerHTML = '';
+    mainUrl.textContent = base;
+    try {
+      new QRCode(mainEl, {text:base, width:180, height:180, colorDark:'#1C0A00', colorLight:'#FFFBF2', correctLevel:QRCode.CorrectLevel.M});
+    } catch(e) {}
+  }
+
   const grid = document.getElementById('qrGrid');
   grid.innerHTML = '';
   STATIONS.forEach((s,i) => {
