@@ -449,7 +449,9 @@ async function loadPassport(phone) {
       const data = snap.data();
       holderName  = data.name  || '';
       holderPhone = data.phone || phone;
-      stamped     = new Set(data.stamps || []);
+      // Filter out any stamp IDs that don't match a current station (handles old test data)
+      const validIds = new Set(ALL_STATIONS.map(s => s.id));
+      stamped = new Set((data.stamps || []).filter(id => validIds.has(id)));
       return true;
     }
   } catch(e) { console.error('Load error:', e); }
@@ -469,12 +471,16 @@ async function createPassport(name, phone) {
   } catch(e) { console.error('Create error:', e); return false; }
 }
 
+function isComplete() {
+  return STATIONS.every(s => stamped.has(s.id));
+}
+
 async function addStamp(stationId) {
   try {
     setSyncStatus('syncing', '☁️ Syncing...');
     const ref = doc(db, 'gta_passports', passportId);
     const updates = { stamps: arrayUnion(stationId) };
-    if (stamped.size === TOTAL) updates.completedAt = serverTimestamp();
+    if (isComplete()) updates.completedAt = serverTimestamp();
     await updateDoc(ref, updates);
     setSyncStatus('saved', '✅ Saved to cloud');
   } catch(e) {
@@ -577,7 +583,7 @@ window.doStamp = async function(stationId) {
 
 window.closeScan = function() {
   document.getElementById('scanOverlay').classList.remove('show');
-  if (stamped.size === TOTAL) setTimeout(showComplete, 400);
+  if (isComplete()) setTimeout(showComplete, 400);
 };
 
 // ── COMPLETE ──
@@ -794,7 +800,7 @@ if (adminMode === 'qr') {
     passportId = savedPhone;
     loadPassport(savedPhone).then(found => {
       if (found) {
-        if (stamped.size === TOTAL) showComplete();
+        if (isComplete()) showComplete();
         else showPassport();
       } else {
         showCover();
