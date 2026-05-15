@@ -319,7 +319,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
     <input class="aurl-input" id="baseUrl" value="https://wcccbusinessnetwork.org/e-passport.html" oninput="buildQRs()">
     <div class="aurl-hint">Update to your actual deployed URL before printing</div>
   </div>
-  <button class="print-btn" onclick="window.print()">🖨️ Print All QR Codes</button>
+  <button class="print-btn" onclick="printPerPage()">🖨️ Print Station Signs (One Per Page)</button>
 
   <div class="master-qr-card" style="background:#fff;border:2px solid var(--red);padding:20px;text-align:center;margin-bottom:20px;">
     <div class="mqr-label" style="font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:8px;">Main Passport Entry</div>
@@ -615,6 +615,74 @@ window.restartPassport = function() {
   document.getElementById('cover').classList.add('show');
   renderStationCards();
   updateProgress();
+};
+
+// ── PRINT PER PAGE (separate window) ──
+window.printPerPage = function() {
+  const base = document.getElementById('baseUrl').value.trim();
+  const active = ALL_STATIONS.filter(s => !removedIds.has(s.id));
+
+  const w = window.open('', '_blank', 'width=900,height=1100');
+  let body = '';
+
+  // Master QR page
+  body += `<div class="page">
+    <div class="culture">Main Passport Entry</div>
+    <div class="qrbox" data-url="${base}"></div>
+    <div class="name">📱 Open the Passport</div>
+    <div class="tagline">Place at festival entrance · Attendees scan to start</div>
+    <div class="url">${base}</div>
+  </div>`;
+
+  // One page per active station
+  active.forEach(s => {
+    const url = base + '?stamp=' + s.id;
+    body += `<div class="page">
+      <div class="culture">${s.culture}</div>
+      <div class="qrbox" data-url="${url}"></div>
+      <div class="name">${s.emoji} ${s.name}</div>
+      <div class="tagline">Scan with your phone camera to stamp this station</div>
+      <div class="url">${url}</div>
+    </div>`;
+  });
+
+  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Print Station Signs</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: letter portrait; margin: 0.5in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1C0A00; }
+  .page {
+    width: 100%; min-height: 10in; padding: 40px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; page-break-after: always; break-after: page;
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .culture { font-size: 16px; letter-spacing: .4em; color: #B91C1C; text-transform: uppercase; font-weight: 600; margin-bottom: 30px; }
+  .qrbox { margin: 20px 0; }
+  .qrbox img, .qrbox canvas { width: 400px !important; height: 400px !important; }
+  .name { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 700; line-height: 1.1; margin-top: 40px; max-width: 90%; }
+  .tagline { font-style: italic; color: #7c6a58; margin-top: 18px; font-size: 15px; }
+  .url { font-size: 12px; color: #7c6a58; margin-top: 22px; word-break: break-all; max-width: 90%; }
+  .toolbar { padding: 20px; text-align: center; background: #FEF3C7; border-bottom: 1px solid #D97706; }
+  .toolbar button { padding: 12px 32px; background: #B91C1C; color: #fff; border: none; font-size: 14px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; }
+  @media print { .toolbar { display: none; } }
+</style></head><body>
+<div class="toolbar"><button onclick="window.print()">🖨️ Print Now</button> &nbsp; <span style="font-size:12px;color:#92400e;">${active.length + 1} pages — one QR per page</span></div>
+${body}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.qrbox').forEach(el => {
+      new QRCode(el, { text: el.dataset.url, width: 400, height: 400, colorDark: '#1C0A00', colorLight: '#FFFBF2', correctLevel: QRCode.CorrectLevel.M });
+    });
+  });
+</script>
+</body></html>`;
+
+  w.document.open();
+  w.document.write(html);
+  w.document.close();
 };
 
 // ── QR CODES ──
