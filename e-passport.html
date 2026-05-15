@@ -291,20 +291,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 <div id="complete">
   <div class="cicon">🎉</div>
   <h2 class="ctitle">Passport<br><em>Complete!</em></h2>
-  <p class="csub" id="completeSub">Amazing! You've explored every station. Head to the Information Booth to claim your prize!</p>
+  <p class="csub" id="completeSub">Amazing! You've explored every station. Go to the Milwaukee Public Museum booth to claim your prize!</p>
   <div class="ccard">
     <div class="ccard-label">Asia Discovery Passport · Completed</div>
     <div class="ccard-name" id="completeName">—</div>
     <div class="cdots" id="completeDots"></div>
     <div class="cfoot">Gateway to Asia · May 16, 2026 · Bayshore</div>
-  </div>
-  <div class="prizes">
-    <div class="prizes-ttl">Your Prize Options</div>
-    <div class="prize">Festival sticker set</div>
-    <div class="prize">Mini lantern</div>
-    <div class="prize">Cultural bookmark</div>
-    <div class="prize">Asian snack treat</div>
-    <div class="prize">Festival wristband</div>
   </div>
   <button class="claim-btn" onclick="claimPrize()">🎁 Show This Screen to Claim Your Prize</button>
   <button class="restart-btn" onclick="restartPassport()">Start over / New passport</button>
@@ -592,7 +584,7 @@ function showComplete() {
   const comp = document.getElementById('complete');
   comp.classList.add('show');
   document.getElementById('completeName').textContent = holderName;
-  document.getElementById('completeSub').textContent = `Amazing! You've explored all ${TOTAL} cultural stations. Head to the Information Booth to claim your prize!`;
+  document.getElementById('completeSub').textContent = `Amazing! You've explored all ${TOTAL} cultural stations. Go to the Milwaukee Public Museum booth to claim your prize!`;
   const dots = document.getElementById('completeDots');
   dots.innerHTML = '';
   STATIONS.forEach(s => {
@@ -604,7 +596,7 @@ function showComplete() {
 }
 
 window.claimPrize = function() {
-  alert('🎁 Show this screen at the Information Booth!\n\nCongratulations ' + holderName + '! You explored all of Gateway to Asia! 🎉');
+  alert('🎁 Show this screen at the Milwaukee Public Museum booth!\n\nCongratulations ' + holderName + '! You explored all of Gateway to Asia! 🎉');
 };
 
 window.restartPassport = function() {
