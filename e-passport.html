@@ -154,7 +154,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 
 @media print{
   #adminPage{display:block !important;}
-  #cover,#passport,#complete,#scanOverlay,#loading,.print-btn,.aurl-wrap,.aintro{display:none !important;}
+  #cover,#passport,#complete,#scanOverlay,#loading,.print-btn,.aurl-wrap,.aintro,.no-print{display:none !important;}
+  .qr-item[style*="opacity: 0.4"]{display:none !important;}
 }
 </style>
 </head>
@@ -234,17 +235,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
     <div class="qr-hint"><strong>📱 How it works</strong>Point your camera at the QR code sign at each cultural station. Your stamp saves instantly to the cloud!</div>
 
     <div class="sec-hdr">Cultural Stations</div>
-    <div class="scard" id="s0"><div class="semoji">🎵</div><div class="sinfo"><div class="sculture">Hmong</div><div class="sname">Hmong Cultural Heritage</div><div class="sdesc">Explore Hmong traditions, textiles, and music</div><div class="sqr-label">Scan QR · Station 1</div></div><div class="sstamp">✓</div></div>
-    <div class="scard" id="s1"><div class="semoji">🏮</div><div class="sinfo"><div class="sculture">China</div><div class="sname">Chinese Cultural Experience</div><div class="sdesc">Discover the beauty of Chinese arts and traditions</div><div class="sqr-label">Scan QR · Station 2</div></div><div class="sstamp">✓</div></div>
-    <div class="scard" id="s2"><div class="semoji">🌺</div><div class="sinfo"><div class="sculture">India</div><div class="sname">Indian Cultural Experience</div><div class="sdesc">Immerse in the vibrant colors and rhythms of India</div><div class="sqr-label">Scan QR · Station 3</div></div><div class="sstamp">✓</div></div>
-    <div class="scard" id="s3"><div class="semoji">🙏</div><div class="sinfo"><div class="sculture">Thailand</div><div class="sname">Thai Community Corner</div><div class="sdesc">Meet the Thai community and learn about its culture</div><div class="sqr-label">Scan QR · Station 4</div></div><div class="sstamp">✓</div></div>
-    <div class="scard" id="s4"><div class="semoji">🀄</div><div class="sinfo"><div class="sculture">China</div><div class="sname">Mahjong Social Circle</div><div class="sdesc">Watch or play a round with the local Mahjong group</div><div class="sqr-label">Scan QR · Station 5</div></div><div class="sstamp">✓</div></div>
+    <div id="culturalStations"></div>
 
     <div class="sec-hdr">Activities & Experiences</div>
-    <div class="scard" id="s5"><div class="semoji">📸</div><div class="sinfo"><div class="sculture">All Cultures</div><div class="sname">Cultural Photo Booth</div><div class="sdesc">Capture your festival moment in traditional attire</div><div class="sqr-label">Scan QR · Station 6</div></div><div class="sstamp">✓</div></div>
-    <div class="scard" id="s6"><div class="semoji">👑</div><div class="sinfo"><div class="sculture">Wisconsin</div><div class="sname">Meet Miss Wisconsin Jr. Leia</div><div class="sdesc">Say hello and get a photo with Miss Wisconsin Jr. Leia</div><div class="sqr-label">Scan QR · Station 7</div></div><div class="sstamp">✓</div></div>
-    <div class="scard" id="s7"><div class="semoji">🥋</div><div class="sinfo"><div class="sculture">Asia</div><div class="sname">Martial Arts Demo</div><div class="sdesc">Watch a live demonstration and try a beginner move</div><div class="sqr-label">Scan QR · Station 8</div></div><div class="sstamp">✓</div></div>
-    <div class="scard" id="s8"><div class="semoji">🎨</div><div class="sinfo"><div class="sculture">All Cultures</div><div class="sname">Cultural Face Painting</div><div class="sdesc">Get a beautiful design inspired by Asian art</div><div class="sqr-label">Scan QR · Station 9</div></div><div class="sstamp">✓</div></div>
+    <div id="activityStations"></div>
   </div>
 </div>
 
@@ -252,7 +246,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 <div id="complete">
   <div class="cicon">🎉</div>
   <h2 class="ctitle">Passport<br><em>Complete!</em></h2>
-  <p class="csub">Amazing! You've explored all 9 cultural stations. Head to the Information Booth to claim your prize!</p>
+  <p class="csub" id="completeSub">Amazing! You've explored every station. Head to the Information Booth to claim your prize!</p>
   <div class="ccard">
     <div class="ccard-label">Asia Discovery Passport · Completed</div>
     <div class="ccard-name" id="completeName">—</div>
@@ -313,18 +307,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
-const TOTAL = 9;
-const STATIONS = [
-  {id:'hmong',     emoji:'🎵', culture:'Hmong',        name:'Hmong Cultural Heritage',    index:0},
-  {id:'china',     emoji:'🏮', culture:'China',        name:'Chinese Cultural Experience',index:1},
-  {id:'india',     emoji:'🌺', culture:'India',        name:'Indian Cultural Experience', index:2},
-  {id:'thai',      emoji:'🙏', culture:'Thailand',     name:'Thai Community Corner',      index:3},
-  {id:'mahjong',   emoji:'🀄', culture:'China',        name:'Mahjong Social Circle',      index:4},
-  {id:'photo',     emoji:'📸', culture:'All Cultures', name:'Cultural Photo Booth',       index:5},
-  {id:'leia',      emoji:'👑', culture:'Wisconsin',    name:'Meet Miss Wisconsin Jr. Leia',index:6},
-  {id:'martial',   emoji:'🥋', culture:'Asia',         name:'Martial Arts Demo',          index:7},
-  {id:'facepaint', emoji:'🎨', culture:'All Cultures', name:'Cultural Face Painting',     index:8},
+const ALL_STATIONS = [
+  {id:'hmong',     emoji:'🎵', culture:'Hmong',        name:'Hmong Cultural Heritage',     desc:'Explore Hmong traditions, textiles, and music',           section:'cultural'},
+  {id:'china',     emoji:'🏮', culture:'China',        name:'Chinese Cultural Experience', desc:'Discover the beauty of Chinese arts and traditions',     section:'cultural'},
+  {id:'india',     emoji:'🌺', culture:'India',        name:'Indian Cultural Experience',  desc:'Immerse in the vibrant colors and rhythms of India',     section:'cultural'},
+  {id:'thai',      emoji:'🙏', culture:'Thailand',     name:'Thai Community Corner',       desc:'Meet the Thai community and learn about its culture',    section:'cultural'},
+  {id:'mahjong',   emoji:'🀄', culture:'China',        name:'Mahjong Social Circle',       desc:'Watch or play a round with the local Mahjong group',     section:'cultural'},
+  {id:'photo',     emoji:'📸', culture:'All Cultures', name:'Cultural Photo Booth',        desc:'Capture your festival moment in traditional attire',     section:'activity'},
+  {id:'leia',      emoji:'👑', culture:'Wisconsin',    name:'Meet Miss Wisconsin Jr. Leia',desc:'Say hello and get a photo with Miss Wisconsin Jr. Leia', section:'activity'},
+  {id:'martial',   emoji:'🥋', culture:'Asia',         name:'Martial Arts Demo',           desc:'Watch a live demonstration and try a beginner move',     section:'activity'},
+  {id:'facepaint', emoji:'🎨', culture:'All Cultures', name:'Cultural Face Painting',      desc:'Get a beautiful design inspired by Asian art',           section:'activity'},
 ];
+
+let removedIds = new Set();
+let STATIONS = ALL_STATIONS.slice();
+let TOTAL    = STATIONS.length;
+
+function applyRemovals() {
+  STATIONS = ALL_STATIONS.filter(s => !removedIds.has(s.id)).map((s,i) => ({...s, index:i}));
+  TOTAL = STATIONS.length;
+}
+applyRemovals();
 
 let stamped    = new Set();
 let holderName = '';
@@ -354,6 +357,42 @@ function hideLoading() {
   const el = document.getElementById('loading');
   el.classList.add('hide');
   setTimeout(() => el.style.display = 'none', 400);
+}
+
+// ── CONFIG (removed stations) ──
+async function loadConfig() {
+  try {
+    const snap = await getDoc(doc(db, 'gta_config', 'active'));
+    if (snap.exists()) {
+      const data = snap.data();
+      removedIds = new Set(data.removedIds || []);
+      applyRemovals();
+    }
+  } catch(e) { console.error('Config load error:', e); }
+}
+
+async function saveConfig() {
+  try {
+    await setDoc(doc(db, 'gta_config', 'active'), { removedIds: Array.from(removedIds) });
+    return true;
+  } catch(e) { console.error('Config save error:', e); return false; }
+}
+
+// ── PASSPORT CARD RENDERING ──
+function renderStationCards() {
+  const cult = document.getElementById('culturalStations');
+  const act  = document.getElementById('activityStations');
+  if (!cult || !act) return;
+  cult.innerHTML = '';
+  act.innerHTML  = '';
+  STATIONS.forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = 'scard';
+    card.id = 's' + i;
+    if (stamped.has(s.id)) card.classList.add('stamped');
+    card.innerHTML = `<div class="semoji">${s.emoji}</div><div class="sinfo"><div class="sculture">${s.culture}</div><div class="sname">${s.name}</div><div class="sdesc">${s.desc}</div><div class="sqr-label">Scan QR · Station ${i+1}</div></div><div class="sstamp">✓</div>`;
+    (s.section === 'cultural' ? cult : act).appendChild(card);
+  });
 }
 
 // ── FIRESTORE ──
@@ -449,10 +488,7 @@ function showPassport() {
   document.getElementById('passport').classList.add('show');
   document.getElementById('holderName').textContent  = holderName;
   document.getElementById('holderPhone').textContent = holderPhone;
-  stamped.forEach(id => {
-    const s = STATIONS.find(x => x.id === id);
-    if (s) { const c = document.getElementById('s'+s.index); if(c) c.classList.add('stamped'); }
-  });
+  renderStationCards();
   updateProgress();
   hideLoading();
   setSyncStatus('saved', '✅ Synced with cloud');
@@ -505,6 +541,7 @@ function showComplete() {
   const comp = document.getElementById('complete');
   comp.classList.add('show');
   document.getElementById('completeName').textContent = holderName;
+  document.getElementById('completeSub').textContent = `Amazing! You've explored all ${TOTAL} cultural stations. Head to the Information Booth to claim your prize!`;
   const dots = document.getElementById('completeDots');
   dots.innerHTML = '';
   STATIONS.forEach(s => {
@@ -531,8 +568,7 @@ window.restartPassport = function() {
   document.getElementById('startBtn').textContent = 'Open My Passport →';
   document.getElementById('startBtn').disabled = false;
   document.getElementById('cover').classList.add('show');
-  // Reset stamp UI
-  for (let i=0;i<TOTAL;i++) { const c=document.getElementById('s'+i); if(c) c.classList.remove('stamped'); }
+  renderStationCards();
   updateProgress();
 };
 
@@ -553,15 +589,38 @@ window.buildQRs = function() {
 
   const grid = document.getElementById('qrGrid');
   grid.innerHTML = '';
-  STATIONS.forEach((s,i) => {
+  ALL_STATIONS.forEach((s,i) => {
     const url = base + '?stamp=' + s.id;
+    const isRemoved = removedIds.has(s.id);
     const item = document.createElement('div');
     item.className = 'qr-item';
-    item.innerHTML = `<div id="qrc${i}"></div><div class="qr-culture">${s.culture}</div><div class="qr-name">${s.emoji} ${s.name}</div><div class="qr-url-text">${url}</div>`;
+    item.style.opacity = isRemoved ? '0.4' : '1';
+    item.innerHTML = `
+      <div id="qrc${i}" style="${isRemoved ? 'filter:grayscale(1);' : ''}"></div>
+      <div class="qr-culture">${s.culture}</div>
+      <div class="qr-name">${s.emoji} ${s.name}</div>
+      <div class="qr-url-text">${url}</div>
+      <button class="toggle-station-btn no-print" data-id="${s.id}" style="margin-top:10px;width:100%;padding:8px;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;border:1px solid ${isRemoved ? 'var(--green)' : 'var(--red)'};background:${isRemoved ? '#dcfce7' : '#fee2e2'};color:${isRemoved ? 'var(--green)' : 'var(--red)'};cursor:pointer;">${isRemoved ? '↩ Restore' : '✕ Remove'}</button>
+    `;
     grid.appendChild(item);
     try {
       new QRCode(document.getElementById('qrc'+i), {text:url, width:130, height:130, colorDark:'#1C0A00', colorLight:'#FFFBF2', correctLevel:QRCode.CorrectLevel.M});
     } catch(e) {}
+  });
+
+  // Wire remove/restore buttons
+  document.querySelectorAll('.toggle-station-btn').forEach(btn => {
+    btn.onclick = async () => {
+      const id = btn.dataset.id;
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+      if (removedIds.has(id)) removedIds.delete(id);
+      else removedIds.add(id);
+      applyRemovals();
+      const ok = await saveConfig();
+      if (ok) buildQRs();
+      else { btn.disabled = false; alert('Could not save — check your connection.'); }
+    };
   });
 };
 
@@ -585,12 +644,16 @@ const adminMode = params.get('admin');
 if (adminMode === 'qr') {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('adminPage').style.display = 'block';
-  // Load QRCode library then build
-  const s = document.createElement('script');
-  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
-  s.onload = () => setTimeout(buildQRs, 300);
-  document.head.appendChild(s);
+  loadConfig().then(() => {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+    s.onload = () => setTimeout(buildQRs, 300);
+    document.head.appendChild(s);
+  });
 } else {
+  // Load config (removed stations) first, then proceed
+  await loadConfig();
+
   // Check for saved phone
   const savedPhone = localStorage.getItem('gta_phone');
 
